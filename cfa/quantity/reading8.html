@@ -85,13 +85,16 @@
 			value. Range has only a limited scope because it uses information
 			from only two observations.</li>
 		<br />
-		<li>MAD for a sample is mean(abs(X-mean(X))).</li>
+		<li>MAD for a sample is ∑(|X-<SPAN
+			style="TEXT-DECORATION: overline">X</SPAN>|)/n.
+		</li>
 		<br />
 		<li>The variance is the average of the squared deviations around
 			the mean, and the standard deviation is the positive square root of
-			variance. In computing sample variance (s^2) and sample standard
-			deviation, the average squared deviation is computed using a divisor
-			equal to the sample size minus 1.</li>
+			variance. In computing sample variance (s<sup>2</sup>) and sample
+			standard deviation, the average squared deviation is computed using a
+			divisor equal to the sample size minus 1.
+		</li>
 		<br />
 		<li>The semivariance is the average squared deviation below the
 			mean; semideviation is the positive square root of semivariance.
@@ -101,14 +104,16 @@
 		<br />
 		<li>According to Chebyshev’s inequality, the proportion of the
 			observations within k standard deviations of the arithmetic mean is
-			at least 1 − 1/k^2 for all k > 1. Chebyshev’s inequality permits us
-			to make probabilistic statements about the proportion of observations
-			within various intervals around the mean for any distribution with
-			finite variance. As a result of Chebyshev’s inequality, a
-			two-standard-deviation interval around the mean must contain at least
-			75 percent of the observations, and a three-standard-deviation
-			interval around the mean must contain at least 89 percent of the
-			observations, no matter how the data are distributed.</li>
+			at least 1 − 1/k<sup>2</sup> for all k > 1. Chebyshev’s inequality
+			permits us to make probabilistic statements about the proportion of
+			observations within various intervals around the mean for any
+			distribution with finite variance. As a result of Chebyshev’s
+			inequality, a two-standard-deviation interval around the mean must
+			contain at least 75 percent of the observations, and a
+			three-standard-deviation interval around the mean must contain at
+			least 89 percent of the observations, no matter how the data are
+			distributed.
+		</li>
 		<br />
 		<li>The coefficient of variation, CV, is the ratio of the
 			standard deviation of a set of observations to their mean value. A
