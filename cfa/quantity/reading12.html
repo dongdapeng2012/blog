@@ -187,11 +187,180 @@
 	<h3>中文手册整理</h3>
 	<ul>
 		<br />
-		<li></li>
+		<li>概念
+			<ul>
+				<br />
+				<li>假设检验（hypothesis testing）</li>
+				<br />
+				<li>原假设（null hypothesis）</li>
+				<br />
+				<li>备择假设（alternative hypothesis）</li>
+				<br />
+				<li>双尾检验（two-tailed test）</li>
+				<br />
+				<li>单尾检验（one-tailed test）</li>
+			</ul>
+		</li>
 		<br />
-		<li></li>
+		<li>基本步骤
+			<ol type="1">
+				<br />
+				<li>说明一个假设</li>
+				<br />
+				<li>确定合适的检验统计量及其概率分布</li>
+				<br />
+				<li>说明显著性水平，阐述决策规则</li>
+				<br />
+				<li>收集数据，计算相应的检验统计量</li>
+				<br />
+				<li>做出统计决策，经济决策或投资决策</li>
+				<br />
+				<li></li>
+				<br />
+			</ol>
+		</li>
 		<br />
-		<li></li>
+		<li>检验统计量 = ( 样本统计量 - 原假设中的总体参数值μ ) / ( 样本统计量的标准误 )
+			<ul>
+				<br />
+				<li>检验统计量是根据样本统计量计算出来的</li>
+				<br />
+				<li>检验统计量服从正态分布，t分布，χ²分布，或F分布的</li>
+				<br />
+				<li>检验统计量的一般公式只适用于z分布和t分布</li>
+			</ul>
+		</li>
+		<br />
+		<li>关键值
+			<ul>
+				<br />
+				<li>看服从z分布还是t分布</li>
+				<br />
+				<li>看单尾检验还是双尾检验</li>
+			</ul>
+		</li>
+		<br />
+		<li>判断规则
+			<ul>
+				<br />
+				<li>基于检验统计量和关键值的判断规则
+					<ol type="1">
+						<br />
+						<li>画分布图</li>
+						<br />
+						<li>确认是双尾还是单尾，显著性水平α，关键值，拒绝域</li>
+						<br />
+						<li>计算检验统计量</li>
+						<br />
+						<li>如果检验统计量落在拒绝域上则拒绝原假设，否则不能拒绝原假设</li>
+					</ol>
+				</li>
+				<br />
+				<li>基于p值和显著性水平的判断规则
+					<ul>
+						<br />
+						<li>检验统计量得到的p值和显著性水平比较，如果p < α则拒绝原假设 ，否则不能拒绝原假设</li>
+					</ul>
+				</li>
+			</ul>
+		</li>
+		<br />
+		<li>结论的陈述
+			<ul>
+				<br />
+				<li>reject, μ is significantly different from μ<sub>0</sub></li>
+				<br />
+				<li>fail to reject, μ is not significantly different from μ<sub>0</sub></li>
+			</ul>
+		</li>
+		<br />
+		<li>错误
+			<ul>
+				<br />
+				<li>第一类错误，错杀好人，原假设正确，却拒绝了原假设</li>
+				<br />
+				<li>第二类错误，放过坏人，原假设错误，却没有拒绝原假设</li>
+				<br />
+				<li>检验的势（power of the test） = 1 - P(type II error)</li>
+			</ul>
+		</li>
+		<br />
+		<li>总体均值
+			<ul>
+				<br />
+				<li>单个总体均值的假设检验
+					<ul>
+						<br />
+						<li>正态总体下，已知方差用z~N(0,1)，未知方差用t~t(n-1)，大样本可以用z</li>
+					</ul>
+				</li>
+				<br />
+				<li>两个独立正态总体均值是否相等
+					<ul>
+						<br />
+						<li>总体方差未知，假定相等
+							<ul>
+								<br />
+								<li>检验统计量，S<sub>p</sub>=方差的样本容量均值<img
+									src="./image/testvalue1.png" height="50%" width="50%"
+									align="middle" />
+								</li>
+								<br />
+								<li>服从分布，t~t(n₁+n₂-2)</li>
+							</ul>
+						</li>
+						<br />
+						<li>总体方差未知，假定不等
+							<ul>
+								<br />
+								<li>检验统计量<img src="./image/testvalue2.png" height="50%"
+									width="50%" align="middle" /></li>
+								<br />
+								<li>服从分布<img src="./image/testdis2.png" height="50%"
+									width="50%" align="middle" /></li>
+							</ul>
+						</li>
+					</ul>
+				</li>
+				<br />
+				<li>成对数检验，两个非独立正态总体均值是否相等用t~t(n-1)<img
+					src="./image/testvalue3.png" height="50%" width="50%"
+					align="middle" />
+					<ul>
+						<br />
+						<li><img src="./image/testdis3.png" height="50%" width="50%"
+							align="middle" /></li>
+					</ul></li>
+			</ul>
+		</li>
+		<br />
+		<li>总体方差
+			<ul>
+				<br />
+				<li>单个总体方差的假设检验，χ²~χ²(n-1)<img src="./image/testvalue4.png"
+					height="50%" width="50%" align="middle" />
+				</li>
+				<br />
+				<li>检验两个独立正态总体方差是否相等用F F~F(n₁-1,n₂-1)
+					<ul>
+						<br />
+						<li>永远把较大的样本方差放在上边，让F>1 拒绝域只在右边</li>
+						<br />
+						<li><img src="./image/testdis4.png" height="50%" width="50%"
+							align="middle" /></li>
+					</ul>
+				</li>
+			</ul>
+		</li>
+		<br />
+		<li>其他
+			<ul>
+				<br />
+				<li>参数检验和非参数检验</li>
+				<br />
+				<li>斯皮尔曼等级</li>
+			</ul>
+		</li>
 	</ul>
 	--------------------
 </body>
