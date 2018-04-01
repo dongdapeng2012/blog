@@ -118,8 +118,8 @@
 			individual assets, n variances of return on the individual assets,
 			and n(n − 1)/2 distinct covariances.</li>
 		<br />
-		<li>Portfolio variance of return is σ<sup>2</sup>(Rp) = ∑∑ w<sub>i</sub>w<sub>j</sub>Cov(R<sub>i</sub>,R<sub>j</sub>)
-			.
+		<li>Portfolio variance of return is σ<sup>2</sup>(R<sup>p</sup>)
+			= ∑∑ w<sub>i</sub>w<sub>j</sub>Cov(R<sub>i</sub>,R<sub>j</sub>) .
 		</li>
 		<br />
 		<li>The calculation of covariance in a forward-looking sense
@@ -162,11 +162,99 @@
 	<h3>中文手册整理</h3>
 	<ul>
 		<br />
-		<li></li>
+		<li>随机事件，简称事件
+			<ul>
+				<br />
+				<li>互斥事件（mutually exclusive），P(AB) = P(A|B) = P(B|A) = 0</li>
+				<br />
+				<li>遍历事件（exhaustive events）</li>
+				<br />
+				<li>所有互斥遍历事件的概率之和等于1</li>
+			</ul>
+		</li>
 		<br />
-		<li></li>
+		<li>分类
+			<ul>
+				<br />
+				<li>客观概率（objective probability）
+					<ul>
+						<br />
+						<li>经验概率（empirical probability）</li>
+						<br />
+						<li>先验概率（priori probability）</li>
+					</ul>
+				</li>
+				<br />
+				<li>主观概率（subjective probability）</li>
+			</ul>
+		</li>
 		<br />
-		<li></li>
+		<li>赔率
+			<ul>
+				<br />
+				<li>odds for E = P(E)/[1-P(E)]，E的胜率</li>
+				<br />
+				<li>odds against E = [1-P(E)]/P(E)，E的赔率</li>
+			</ul>
+		</li>
+		<br />
+		<li>无条件概率（marginal probability） vs 条件概率</li>
+		<br />
+		<li>联合概率（joint probability），P(AB) = P(A|B)P(B) = P(B|A)P(A)</li>
+		<br />
+		<li>乘法法则，P(AB) = P(A|B)P(B) = P(B|A)P(A)</li>
+		<br />
+		<li>加法法则，P(A || B) = P(A) + P (B) - P(AB)</li>
+		<br />
+		<li>独立事件，P(A|B) = P(A)，或P(AB) = P(A)P(B)</li>
+		<br />
+		<li>全概率公式 P(A) = 所有情况下A的概率之和</li>
+		<br />
+		<li>协方差（covariance），Cov(X,Y) = E[(X-E(X))(Y-E(Y))]
+			<ul>
+				<br />
+				<li>两个随机变量变化的同向性</li>
+				<br />
+				<li>自己和自己的协方差等于方差</li>
+				<br />
+				<li>协方差的取值范围是负无穷到正无穷</li>
+				<br />
+				<li>计算
+					<ol type="1">
+						<br />
+						<li>每个变量的期望</li>
+						<br />
+						<li>各种情况下每个变量对期望的偏差的乘积</li>
+						<br />
+						<li>所有情况下乘积的期望</li>
+					</ol>
+				</li>
+			</ul>
+		</li>
+		<br />
+		<li>相关系数（correlation），相当于协方差的标准化<img
+			src="./image/correlation.png" height="25%" width="25%" />
+			<ul>
+				<br />
+				<li>两个随机变量的线性关系</li>
+				<br />
+				<li>取值范围[-1,1]</li>
+				<br />
+				<li>相关系数=0不代表独立</li>
+			</ul></li>
+		<br />
+		<li>贝叶斯公式<img src="./image/Bayes.png" height="25%" width="25%" /></li>
+		<br />
+		<li>计数原理
+			<ul>
+				<br />
+				<li>多元二项公式（multinomial formula）</li>
+				<br />
+				<li>排列（permutation）</li>
+				<br />
+				<li>组合（combination）</li>
+			</ul>
+		</li>
 	</ul>
 	--------------------
 </body>
