@@ -3,50 +3,112 @@
 
 <head>
 	<meta charset="utf-8">
-	<title id="readingX">Reading</title>
+	<title id="reading9">Chaptor 9 Correlation and Regression</title>
 </head>
 
 <body>
-
-
-	
+	<h1>CORRELATION ANALYSIS</h1>
 	--------------------
-	<h2 id="">Point</h2>
-
-
-	--------------------
-
-
+	<h2>Testing the Significance of the Correlation Coefficient</h2>
 	<ul>
+		<img src="./pic/t-of-sample-r.png" />
+		<li>t-test小于查表t时不能拒绝假设</li>
 		<br />
-		<li></li>
-		<br />
-		<li></li>
-		<br />
-		<li></li>
+		<li>n越大t越大, t越大越可能拒绝假设</li>
 	</ul>
-
 	<br />
-	
 	--------------------
-	<h2 id="">Point</h2>
-
-	
-
+	<h1>LINEAR REGRESSION</h1>
 	--------------------
-
-
+	<h2>The Coefficient of Determination For The Regression</h2>
 	<ul>
+		<li>Coefficient of Determination
+			<br /><img src="./pic/r-square.png" />
+			<br />R<sup>2</sup>代表系统风险(方差)的比例, 其余部分是非系统风险(方差)
+			<br />COD = R<sup>2</sup>
+		</li>
 		<br />
-		<li></li>
+		<li>单个独立变量的线性回归中, Correlation Coefficient = Coefficient of Determination 的平方根 = Multiple R</li>
 		<br />
-		<li></li>
+		<li>线性回归的sample error of estimate = [unexplained variation/(n-2)]的平方根</li>
 		<br />
-		<li></li>
+		<li>线性回归的sample standard deviation of dependent variable = [total variation/(n-1)]的平方根</li>
 	</ul>
 	--------------------
+	<h2>Hypothesis Testing</h2>
+	<ul>
+		对线性回归 Y<sub>i</sub>=α+βX<sub>i</sub>+ε, 有下面几种测试
+		<br />
+		<li>区间测试
+			<br /><img src="./pic/hypothesis-test-beta-range-test.png" />
+			<br />其中<img src="./pic/beta-cap.png" />代表β的估计值, coefficient of β,
+			<br /><img src="./pic/t-c.png" />代表查表t,
+			<br />计算结果代表假设参数的置信区间, 如果β的原假设值在区间之外则拒绝原假设
+		</li>
+		<br />
+		<li>t测试
+			<br /><img src="./pic/hypothesis-test-t-value.png" />
+			<br />其中β代表β的原假设值,
+			<br />将得到的结果与查表t值比较, 如果结果t值比查表t值大则拒绝原假设
+		</li>
+	</ul>
+	--------------------
+	<h2>Analysis of Variance in a Regression with One Independent Variable</h2>
+	<ul>
+		<br />
+		<li>
+			SSE = Sum of squared errors or residuals, or residual sum of squares
+			<br />RSS = regression sum of squares
+			<br />TSS = SSE + RSS = Total variation
+		</li>
+		<br />
+		<li>
+			<img src="./pic/f-statistics.png" />
+			<br />其中 F<sub>1,n-2</sub> = F<sub>(# slope parameters), (n - # parameters)</sub>
+			<br />考虑直线时只有一个斜率参数, # slope parameters = 1
+			<br />自由度 n - # parameters = n - 估计的参数的个数(2个, 截距和斜率) = n - 2
+			<br />当只有一个变量时, F统计 = t统计值的平方
+			<br />查表得到p值, 通过p值判断是否拒绝原假设, p值越小越可能拒绝原假设
+		</li>
+		<br />
+		<li>独立变量个数 = Regression自由度 (决定斜率的参数个数)</li>
+	</ul>
+	--------------------
+	<h2>Prediction Intervals</h2>
+	<ul>
+		<li>
+			<img src="./pic/estimated-variance-of-prediction-error.png" />
+			<br />其中 s = standard error of estimate
+			<br />n = 观察数
+			<br />X = 独立变量
+			<br /><span style="TEXT-DECORATION: overline">X</span> = estimated mean
+			<br />s<sub>x</sub><sup>2</sup> = 独立变量的variance
+		</li>
+		<br />
+		<li>预测区间的步骤
+			<ol>
+				<li>Make the prediction</li>
+				<br />
+				<li>用上面的公式计算预测误差的方差</li>
+				<br />
+				<li>选择显著性水平α, 以及回归的自由度, 查表得到critical value t<sub>c</sub></li>
+				<br />
+				<li>计算(1-α)预测区间 <img src="./pic/prediction-interval.png" /></li>
+			</ol>
+		</li>
+	</ul>
+	--------------------
+	<h2>Limitations of Regression Analysis</h2>
+	<ol>
+		<li>parameter instability, 相关性本身就会改变, 导致回归关系改变</li>
+		<br />
+		<li>Public会利用回归结果参与市场活动导致回归关系的变化</li>
+		<br />
+		<li>回归的线性假设可能会不成立, 导致线性回归的假设测试和预测无效</li>
+	</ol>
+	--------------------
 	<br />
-	<a href="./reading10.html">Next Reading</a>
+	<a href="./reading10-1.html">Next Chaptor</a>
 </body>
 
 </html>

@@ -3,50 +3,224 @@
 
 <head>
 	<meta charset="utf-8">
-	<title id="readingX">Reading</title>
+	<title id="reading11">Chaptor 11 Time-Series Analysis</title>
 </head>
 
 <body>
-
-
-	
+	<h1>时间序列预测的步骤</h1>
 	--------------------
-	<h2 id="">Point</h2>
-
-
+	<img src="./pic/time-series-analysis-flowchart.png" width="100%" />
 	--------------------
-
-
+	<h1>时间序列的困难</h1>
+	--------------------
 	<ul>
 		<br />
-		<li></li>
+		<li>残差项之间的自相关</li>
 		<br />
-		<li></li>
-		<br />
-		<li></li>
+		<li>时间序列的均值及方差随时间变化</li>
 	</ul>
-
-	<br />
-	
 	--------------------
-	<h2 id="">Point</h2>
-
-	
-
+	<h1>趋势模型 Trend Models</h1>
 	--------------------
-
-
 	<ul>
 		<br />
-		<li></li>
+		<li>Linear Trend Models y<sub>t</sub>=b<sub>0</sub>+b<sub>1</sub>t+ε<sub>t</sub></li>
 		<br />
-		<li></li>
+		<li>Log-Linear Trend Models y<sub>t</sub>=e<sup>b<sub>0</sub>+b<sub>1</sub>t</sup></li>
+	</ul>
+	--------------------
+	<h1>自回归模型 AutoRegressive (AR) Time-Series Models</h1>
+	--------------------
+	<ul>
 		<br />
-		<li></li>
+		<li>AR(1): x<sub>t</sub>=b<sub>0</sub>+b<sub>1</sub>x<sub>t-1</sub>+ε<sub>t</sub></li>
+		<br />
+		<li>AR(n): x<sub>t</sub>=b<sub>0</sub>+Σb<sub>i</sub>x<sub>t-i</sub>+ε<sub>t</sub></li>
+		<br />
+		<li>协方差平稳 Covariance-Stationary
+			<ul>
+				<li>协方差平稳条件
+					<ul>
+						<br />
+						<br />
+						<li>变量均值预期存在且不变</li>
+						<br />
+						<li>变量方差存在且不变</li>
+						<br />
+						<li>变量间协方差存在且不变</li>
+					</ul>
+				</li>
+				<br />
+				<li>均值复归 Mean Reversion
+					<ul>
+						<br />
+						<li>x<sub>t</sub>=b<sub>0</sub>/(1-b<sub>1</sub>)</li>
+						<br />
+						<li>如果一个时间序列是协方差平稳的, 那么一定均值复归</li>
+						<br />
+						<li>当b<sub>1</sub>=1时, 这组数据有单位根(unit root), 这时没有均值(协方差不平稳), 变化也没有规律, 呈现随机游走
+							<ul>
+								<br />
+								<li>简单随机游走 x<sub>t</sub>=x<sub>t-1</sub>+ε<sub>t</sub></li>
+								<br />
+								<li>带漂移项的随机游走 x<sub>t</sub>=b<sub>0</sub>+x<sub>t-1</sub>+ε<sub>t</sub></li>
+							</ul>
+						</li>
+					</ul>
+				</li>
+				<br />
+				<li>检验方法: 用DF检验(Dickey-Fuller test)时间序列的协方差是否平稳
+					<ul>
+						<br />
+						<li>将公式改写 x<sub>t</sub>-x<sub>t-1</sub>=b<sub>0</sub>+(b<sub>1</sub>-1)x<sub>t-1</sub>+ε<sub>t</sub></li>
+						<br />
+						<li>
+							原假设H<sub>0</sub>: 有单位根且协方差非平稳, b<sub>1</sub>-1 等于 0
+							<br />
+							备择假设H<sub>α</sub>: 无单位根且协方差平稳, b<sub>1</sub>-1 小于 0
+						</li>
+						<br />
+						<li>运用t检验, 如果b<sub>1</sub>-1显著性不等于0, 则拒绝原假设, 即没有单位根且协方差平稳</li>
+					</ul>
+				</li>
+				<br />
+				<li>修正: 一阶差分 first differencing
+					<ul>
+						<br />
+						<li>假设 y<sub>t</sub>=x<sub>t</sub>-x<sub>t-1</sub>=ε<sub>t</sub></li>
+						<br />
+						<li>用y<sub>t</sub>建模AR(1): y<sub>t</sub>=b<sub>0</sub>+b<sub>1</sub>y<sub>t-1</sub>+ε<sub>t</sub></li>
+						<br />
+						<li>如果仍然非平稳, 则对y<sub>t</sub>再做一次差分, 直到数据平稳为止</li>
+					</ul>
+				</li>
+			</ul>
+		</li>
+		<br />
+		<li>自相关
+			<ul>
+				<br />
+				<li>自相关现象指残差项之间有相关性</li>
+				<br />
+				<li>检验方法
+					<ul>
+						<img src="./pic/t-test-error-autocorrelation.png" />
+						<br />
+						<li>原假设H<sub>0</sub>: error autocorrelation = 0</li>
+						<br />
+						<li>如果t统计量较大, 表明相关系数显著不等于0, 拒绝原假设, 存在自相关现象</li>
+					</ul>
+				</li>
+				<br />
+				<li>修正: 模型中增加滞后自变量
+					<ul>
+						<br />
+						<li>用AR(2)建模: x<sub>t</sub>=b<sub>0</sub>+b<sub>1</sub>x<sub>t-1</sub>+b<sub>2</sub>x<sub>t-2</sub>+ε<sub>t</sub></li>
+						<br />
+						<li>如果仍然有自相关现象, 用AR(3)建模, 直至没有自相关现象</li>
+					</ul>
+				</li>
+			</ul>
+		</li>
+		<br />
+		<li>季节性 Seasonality
+			<ul>
+				<br />
+				<li>加入上一周期的同期自变量, 即AR(T)建模 x<sub>t</sub>=b<sub>0</sub>+b<sub>1</sub>x<sub>t-1</sub>+b<sub>2</sub>x<sub>t-T</sub>+ε<sub>t</sub></li>
+			</ul>
+		</li>
+		<br />
+		<li>条件异方差
+			<ul>
+				<br />
+				<li>条件异方差指残差项波动不稳定, 且波动与自变量相关</li>
+				<br />
+				<li>检验方法: 用ARCH模型检验自回归条件异方差, 多元回归分析中的BP检验不适用
+					<ul>
+						<br />
+						<li>ARCH(1)建模: σ<sub>t</sub><sup>2</sup>=a<sub>0</sub>+a<sub>1</sub>σ<sub>t-1</sub><sup>2</sup>+u<sub>t</sub>
+							或简化后 ε<sub>t</sub><sup>2</sup>=a<sub>0</sub>+a<sub>1</sub>ε<sub>t-1</sub><sup>2</sup>+u<sub>t</sub></li>
+						<br />
+						<li>原假设H<sub>0</sub>: a<sub>1</sub>=0</li>
+						<br />
+						<li>如果a<sub>1</sub>显著不等于0, 则拒绝原假设, 存在条件异方差现象</li>
+					</ul>
+				</li>
+				<br />
+				<li>修正: 广义最小二乘法</li>
+			</ul>
+		</li>
+		<br />
+		<li>检测自回归模型的预测能力
+			<ul>
+				<br />
+				<li>样本内误差 in-sample forecast errors</li>
+				<br />
+				<li>样本外误差 out-of-sample forecast errors</li>
+				<br />
+				<li>均方根误差 root mean squared error, RMSE
+					<ul>
+						<br />
+						<li>用于比较多个自回归模型的预测能力</li>
+						<br />
+						<li>将估计的Y值与真实Y<sub>i</sub>值做差的平方, 求均值, 再开方</li>
+						<br />
+						<li>均方根误差越小, 模型预测能力越强</li>
+					</ul>
+				</li>
+			</ul>
+		</li>
+		<br />
+		<li>回归系数不稳定问题的常见原因
+			<ul>
+				<br />
+				<li>很多数据的关系随时间变化</li>
+				<br />
+				<li>大样本数据(长期历史数据)容易导致数据本身性质的变化</li>
+				<br />
+				<li>短期数据又存在数据样本较小的问题</li>
+			</ul>
+		</li>
+		<br />
+		<li>移动平均模型
+			<ul>
+				<br />
+				<li>n期移动平均</li>
+				<br />
+				<li>时间序列的移动平均模型
+					<ul>
+						<br />
+						<li>将观本期测值表示成上一期的残差项和本期残差项的线性函数 x<sub>t</sub>=ε<sub>t</sub>+θε<sub>t-1</sub></li>
+						<br />
+						<li>变量间的自相关会很快降低到0</li>
+					</ul>
+				</li>
+			</ul>
+		</li>
+		<br />
+		<li>多个时间序列的回归
+			<ul>
+				<br />
+				<li>所有时间序列都没有单位根时, 协方差平稳, 可以做多元回归</li>
+				<br />
+				<li>同时有时间序列有单位根, 也有时间序列没有单位根, 不能做多元回归</li>
+				<br />
+				<li>所有时间序列都有单位根时, 协方差不平稳
+					<ul>
+						<br />
+						<li>如果这些时间序列之间是协整的 cointegration, 可以做多元回归</li>
+						<br />
+						<li>如果这些时间序列之间不是协整的, 不能做多元回归</li>
+						<br />
+						<li>用DF-EG检验(Dickey-Fuller Engle-Granger test)验证两个时间序列是否协整</li>
+					</ul>
+				</li>
+			</ul>
+		</li>
 	</ul>
 	--------------------
 	<br />
-	<a href="./reading12.html">Next Reading</a>
+	<a href="./reading12.html">Next Chaptor</a>
 </body>
 
 </html>

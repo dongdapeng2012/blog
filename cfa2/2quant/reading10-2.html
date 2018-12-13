@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title id="reading10-2">Chaptor 10 Issues In Regression Analysis</title>
+</head>
+
+<body>
+    --------------------
+    <h1>Violations Of Regression Assumptions</h1>
+    --------------------
+    <h2>异方差 heteroskedasticity</h2>
+    <ul>
+        <br />
+        <li>回归模型中的残差项的方差是不稳定的, 与回归模型假设不符</li>
+        <br />
+        <li>两种子类
+            <ul>
+                <br />
+                <li>非条件异方差
+                    <br />异方差和自变量取值不相关, 所以一般不会对回归造成很大影响
+                </li>
+                <br />
+                <li>条件异方差
+                    <br />条件异方差和自变量取值相关, 会对统计推断带来重大影响
+                    <ul>条件异方差给回归模型带来的后果
+                        <br />
+                        <li>条件异方差不会影响回归系数b<sub>k</sub>的估计</li>
+                        <br />
+                        <li>条件异方差只影响残差项的方差S<sub>ε</sub><sup>2</sup></li>
+                        <br />
+                        <li>如果S<sub>ε</sub>估计过小时, 导致t统计量过大, 原假设越容易被拒绝, 第一类错误(去真)</li>
+                        <br />
+                        <li>如果S<sub>ε</sub>估计过大时, 导致t统计量过小, 原假设越难被拒绝, 第二类错误(存伪)</li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+        <br />
+        <li>检验条件异方差是否存在
+            <ul>
+                <br />
+                <li>方法一, 画图看到残差项的方差波动变大或变小</li>
+                <br />
+                <li>方法二, 通过Breusch-Pagenχ<sup>2</sup> (BP检验)
+                    <ul>
+                        <br />
+                        <li>
+                            原假设H<sub>0</sub> : 无异方差<br />
+                            备择假设H<sub>α</sub> : 有异方差
+                        </li>
+                        <br />
+                        <li>BP-test = n·R<sub>residual</sub><sup>2</sup> 其中 R<sub>residual</sub> 表示对残差的方差做回归得到的决定系数 R<sup>2</sup>,
+                            一般不需计算</li>
+                        <br />
+                        <li>画分布, BP检验服从χ<sup>2</sup>分布, 适用单尾检验</li>
+                        <br />
+                        <li>决策, BP统计量越大即R<sub>residual</sub><sup>2</sup>越大, 说明残差拟合越好, 自变量越能影响残差, 越可能拒绝原假设</li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+        <br />
+        <li>修正条件异方差
+            <ul>
+                <br />
+                <li>Robust Standard Error (White corrected)</li>
+                <br />
+                <li>Generalized least squares (最小二乘法)</li>
+            </ul>
+        </li>
+    </ul>
+    --------------------
+    <h2>序列相关 Serial Correlation</h2>
+    <ul>
+        <br />
+        <li>回归分析假设残差项之间不相关, 这种相关性称为序列相关
+            <ul>
+                <br />
+                <li>正序列相关: 前一期残差与后一期残差有相同趋势, 即后一期残差更趋向与前一期残差的方向</li>
+                <br />
+                <li>负序列相关: 前一期残差与后一期残差有相反趋势</li>
+            </ul>
+        </li>
+        <br />
+        <li>后果
+            <ul>
+                <br />
+                <li>正序列相关导致第一类错误(去真), 从而使F检验结果不可靠
+                    <ul>
+                        <br />
+                        <li>正序列相关对回归系数(b<sub>0</sub>, b<sub>1</sub>)的一致性和估计值没有影响, 它只影响残差方差的估计</li>
+                        <br />
+                        <li>正序列相关下, 数据波动有趋势, 会导致波动率被低估, 残差的标准差被低估, 所有t统计量过大, 第一类错误</li>
+                        <br />
+                        <li>正序列相关在经济和金融实务中更常见</li>
+                    </ul>
+                </li>
+                <br />
+                <li>负序列相关导致第二类错误(存伪)
+                    <ul>
+                        <br />
+                        <li>残差的标准差被高估, 导致t统计量过小, 导致第二类错误</li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+        <br />
+        <li>检验 - Durbin-Watson检验
+            <ul>
+                <br />
+                <li>原假设H<sub>0</sub> : 无序列相关</li>
+                <br />
+                <li>计算 DWL = 2(1-r), 其中r = 残差的自相关系数 r<sub>ε<sub>i</sub></sub><sub>ε<sub>j</sub></sub>
+                    <ul>
+                        <br />
+                        <li>若 r --> 0, DW --> 2, 无序列相关</li>
+                        <br />
+                        <li>若 r --> -1, DW --> 4, 负序列相关</li>
+                        <br />
+                        <li>若 r --> 1, DW --> 0, 正序列相关</li>
+                    </ul>
+                </li>
+                <br />
+                <li>判别 : 通过DW表查到d<sub>L</sub>, d<sub>U</sub>
+                    <ul>
+                        <br />
+                        <li>0 ~ d<sub>L</sub> : 拒绝原假设</li>
+                        <br />
+                        <li>d<sub>L</sub> ~ d<sub>U</sub> : 无结论 Inconclusive</li>
+                        <br />
+                        <li>d<sub>U</sub> ~ 4-d<sub>U</sub> : 不能拒绝原假设</li>
+                        <br />
+                        <li>4-d<sub>U</sub> ~ 4-d<sub>L</sub> : 无结论 Inconclusive</li>
+                        <br />
+                        <li>4-d<sub>L</sub> ~ 4 : 拒绝原假设</li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+        <br />
+        <li>修正
+            <ul>
+                <br />
+                <li>Hensen方法(常用)
+                    <ul>
+                        <br />
+                        <li>调整计算序列相关性的线性回归参数估计的coefficient standard errors</li>
+                    </ul>
+                </li>
+                <br />
+                <li>Newey-West方法
+                    <ul>
+                        <br />
+                        <li>调整回归公式</li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+    </ul>
+    --------------------
+    <h2>多重共线性 Multicollinearity</h2>
+    <ul>
+        <br />
+        <li>多个自变量之间存在较强的相关性</li>
+        <br />
+        <li>后果
+            <ul>
+                <br />
+                <li>对回归系数(b<sub>0</sub>, b<sub>1</sub>)的一致性没有影响, 对估计值有影响
+                    <ul>
+                        <br />
+                        <li>造成回归系数(b<sub>0</sub>, b<sub>1</sub>)本身的估计不准确</li>
+                        <br />
+                        <li>无法准确区分某个自变量对因变量Y的影响程度</li>
+                        <br />
+                        <li></li>
+                    </ul>
+                </li>
+                <br />
+                <li>导致对残差标准误的估计偏大, 因此t检验结果不准确</li>
+            </ul>
+        </li>
+        <br />
+        <li>检验
+            <ul>
+                <br />
+                <li>方法一, 计算两个自变量之间的相关系数 r<sub>x<sub>i</sub></sub><sub>x<sub>j</sub></sub>, 小于0.7为相关性较小, 大于0.7为相关性较大</li>
+                <br />
+                <li>当方程所有系数的t检验都表明系数没有显著性不等于零(不能拒绝原假设b<sub>i</sub>=0), 且F检验数值很高, 且R<sup>2</sup>数值也比较高, 此时有多重共线性</li>
+            </ul>
+        </li>
+        <br />
+        <li>修正
+            <ul>
+                <br />
+                <li>剔除部分有相关性的自变量</li>
+            </ul>
+        </li>
+        <br />
+        <li></li>
+    </ul>
+    --------------------
+    <h2>三者对比</h2>
+    <ul>
+        <table border="1">
+            <tr>
+                <th></th>
+                <th>条件异方差 Heteroskedasticity</th>
+                <th>序列相关 Serial correlation</th>
+                <th>多重共线性 Multicollinearity</th>
+            </tr>
+            <tr>
+                <td>后果</td>
+                <td>估计的残差方差较小时导致第一类错误<br />估计的残差方差较大时导致第二类错误</td>
+                <td>正序列相关导致第一类错误<br />负序列相关导致第二类错误</td>
+                <td>较大的决定系数R<sup>2</sup><br />较小的t统计量</td>
+            </tr>
+            <tr>
+                <td>检验</td>
+                <td>残差散点图<br />BP检验, BP=nR<sup>2</sup></td>
+                <td>残差散点图<br />DW检验, DW≈2(1-r)</td>
+                <td>t检验, 不能拒绝原假设<br />且F检验, 拒绝原假设<br />且决定系数R<sup>2</sup>较大</td>
+            </tr>
+            <tr>
+                <td>修正</td>
+                <td>稳健标准差Robust standard errors</td>
+                <td>Robust standard errors (Hensen方法)</td>
+                <td>剔除部分有相关性的自变量</td>
+            </tr>
+        </table>
+    </ul>
+    --------------------
+    <h1>Model Specification And Errors In Specification</h1>
+    --------------------
+    <h2>建模原则</h2>
+    <ul>
+        <br />
+        <li>模型应当建立在 cogent 经济理由上</li>
+        <br />
+        <li>变量的函数形式应当符合变量的自身意义</li>
+        <br />
+        <li>谨慎加入变量</li>
+        <br />
+        <li>回归假设的波动应当可以被测试</li>
+        <br />
+        <li>模型应当有现实价值和意义, 不仅对某些数据有效</li>
+    </ul>
+    --------------------
+    <h2>建模错误</h2>
+    <ul>
+        <br />
+        <li>函数形式错误
+            <ul>
+                <br />
+                <li>遗漏重要自变量
+                    <ul>
+                        <br />
+                        <li>误差项与遗漏变量相关</li>
+                        <br />
+                        <li>回归系数的估计值 bias & inconsistent</li>
+                        <br />
+                        <li>回归系数的标准误 inconsistent</li>
+                    </ul>
+                </li>
+                <br />
+                <li>有变量需要公式变形</li>
+                <br />
+                <li>引用不能混用的数据集</li>
+            </ul>
+        </li>
+        <br />
+        <li>时间序列设定错误
+            <ul>
+                <br />
+                <li>将滞后的因变量当作自变量
+                    <ul>
+                        <br />
+                        <li>导致滞后的因变量与残差项产生相关关系</li>
+                        <br />
+                        <li>回归系数的估计值 bias & inconsistent</li>
+                    </ul>
+                </li>
+                <br />
+                <li>将因变量的函数反过来解释自变量</li>
+                <br />
+                <li>自变量的计量存在误差, 例如用历史数据代替预期数据建模
+                    <ul>
+                        <br />
+                        <li>回归系数的估计值 bias & inconsistent</li>
+                    </ul>
+                </li>
+                <br />
+                <li>nonstationarity 非平稳性
+                    <ul>
+                        <br />
+                        <li>时间序列存在趋势</li>
+                        <br />
+                        <li>随机行走</li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+    </ul>
+    --------------------
+    <h2>定性因变量 Qualitative Dependent Variables</h2>
+    <ul>
+        <br />
+        <li>概率模型 probit model, Y=0|1的概率, 服从正态分布</li>
+        <br />
+        <li>逻辑模型 logic model, Y=0|1的概率, 服从逻辑分布</li>
+        <br />
+        <li>判别式模型 discriminant model</li>
+    </ul>
+    --------------------
+    <br />
+    <a href="./reading11.html">Next Chaptor</a>
+</body>
+
+</html>

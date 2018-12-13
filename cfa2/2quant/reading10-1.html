@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title id="reading10-1">Chaptor 10 Multiple Linear Regression</title>
+</head>
+
+<body>
+	--------------------
+	<h1>Multiple Linear Regression</h1>
+	--------------------
+	<h2>Equation</h2>
+	<ul>
+		Y<sub>i</sub> = b<sub>0</sub> + Σb<sub>k</sub>X<sub>ki</sub> + ε<sub>i</sub>
+		<br />
+		<li>其中b<sub>k</sub> = regression coefficients, partial regression coefficients, partial slope coefficients</li>
+	</ul>
+	--------------------
+	<h1>回归系数的假设检验</h1>
+	--------------------
+	<h2>单一变量系数检验</h2>
+	<h3>t-test</h3>
+	<ul>
+		<br />
+		<li>检验其中一个自变量对方程因变量的解释程度</li>
+		<br />
+		<li>
+			<img src="./pic/t-test.png"/>
+			<br />其中df=n-k-1
+		</li>
+		<br />
+		<li>当t值超出±t<sub>临界值</sub>范围之外时拒绝原假设</li>
+	</ul>
+	<br />
+	<h3>p-value</h3>
+	<ul>
+		<br />
+		<li>当p值小于α时拒绝原假设</li>
+	</ul>
+	<br />
+	<h3>回归系数置信区间</h3>
+	<ul>
+		<li>
+			<img src="./pic/confidence-interval.png"/>
+			<br />其中t<sub>c</sub>=查表t值
+		</li>
+	</ul>
+	--------------------
+	<h2>回归整体假设检验</h2>
+	<h3>F-test</h3>
+	<ul>
+		<img src="./pic/f-statistics-multi-regression.png"/>
+		<br />
+		<li>
+			原假设H<sub>0</sub>: 所有b<sub>k</sub>=0
+			<br />备择假设H<sub>a</sub>: 至少有一个b<sub>k</sub>≠0
+		</li>
+		<br />
+		<li>F检验是单尾检验, 依据置信水平, 分子自由度, 分母自由度查到临界值</li>
+		<br />
+		<li>当F值大于F<sub>c</sub>时, 拒绝原假设</li>
+	</ul>
+	--------------------
+	<h1>Adjusted R<sup>2</sup></h1>
+	--------------------
+	<ul>
+		<img src="./pic/adjust-r-square.png"/>
+	</ul>
+	--------------------
+	<h1>虚拟变量 Dummy Variables</h1>
+	--------------------
+	<h2>概念</h2>
+	<ul>
+		<br />
+		<li>虚拟变量是回归模型中自变量为定性变量, 只能取0或1</li>
+		<br />
+		<li>如果有n种情况, 则需要n-1个虚拟变量</li>
+	</ul>
+		--------------------
+	<h2>假设检验</h2>
+	<h3>t-test</h3>
+	<ul>
+		<br />
+		<li>对单个变量系数使用t检验</li>
+		<br />
+		<li>
+			原假设H<sub>0</sub>: b<sub>i</sub>=0
+			<br />备择假设H<sub>a</sub>: b<sub>i</sub>≠0
+		</li>
+	</ul>
+	--------------------
+	<br />
+	<a href="./reading10-2.html">Next Chaptor</a>
+</body>
+
+</html>
