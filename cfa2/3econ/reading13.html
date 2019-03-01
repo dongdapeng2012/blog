@@ -8,43 +8,581 @@
 
 <body>
 	--------------------
-	<h1>Head1</h1>
+	<h1>FOREIGN EXCHANGE MARKET</h1>
 	--------------------
-	<h2>Head2</h2>
+	<h2>Concepts</h2>
 	<ul>
-		<img src="./pic/xxx.png"/>
 		<br />
-		<li></li>
+		<li>The offer price > the bid price
+			<p>"hit the bid" or "paid the offer"</p>
+		</li>
 		<br />
-		<li></li>
+		<li>三角套利 triangular arbitrage</li>
 		<br />
-		<li></li>
+		<li>交叉汇率 cross rate
+			<ul>
+				<br />
+				<li>(X/Z)<sub>bid</sub>=(X/Y)<sub>bid</sub> × (Y/Z)<sub>bid</sub></li>
+				<br />
+				<li>(X/Z)<sub>ask</sub>=(X/Y)<sub>ask</sub> × (Y/Z)<sub>ask</sub></li>
+				<br />
+				<li>(X/Z)<sub>bid</sub>=(X/Y)<sub>bid</sub> ÷ (Z/Y)<sub>ask</sub></li>
+				<br />
+				<li>(X/Z)<sub>ask</sub>=(X/Y)<sub>ask</sub> ÷ (Z/Y)<sub>bid</sub></li>
+			</ul>
+		</li>
+		<br />
+		<li>远期市场
+			<ul>
+				<br />
+				<li>T+2以上settlement date</li>
+				<br />
+				<li>
+					<p>i<sub>d</sub>=本币一年期利率</p>
+					<p>i<sub>f</sub>=外币一年期利率</p>
+					<p>P=Price 币种, 分子</p>
+					<p>B=Base 币种, 分母</p>
+					<p>F<sub>f/d</sub>=远期外币/本币</p>
+					<p>S<sub>f/d</sub>=即期外币/本币</p>
+				</li>
+				<br />
+				<li>
+					<p>F<sub>f/d</sub>=S<sub>f/d</sub>((1+i<sub>f</sub>)/(1+i<sub>d</sub>))</p>
+					<p>F<sub>P/B</sub>=S<sub>P/B</sub>((1+i<sub>P</sub>[days/360])/(1+i<sub>B</sub>[days/360]))</p>
+				</li>
+				<br />
+				<li>
+					<p>远期升水/贴水=F<sub>f/d</sub>-S<sub>f/d</sub>=S<sub>f/d</sub>((i<sub>f</sub>-i<sub>d</sub>)/(1+i<sub>d</sub>))</p>
+					<p>远期升水/贴水=F<sub>P/B</sub>-S<sub>P/B</sub>=S<sub>P/B</sub>((i<sub>P</sub>-i<sub>B</sub>)/([360/days]+i<sub>P</sub>))</p>
+				</li>
+				<br />
+				<li>
+					<p>盯市价值 V<sub>t</sub> = (FP<sub>t</sub> - FP) × 数量 / [1 + R × days / 360]</p>
+				</li>
+				<br />
+				<li>
+					<p>FP<sub>Sell Base</sub> = FP<sub>Bid Base</sub> = SP<sub>Bid</sub> + Point<sub>Bid</sub>/10000</p>
+					<p>FP<sub>Buy Base</sub> = FP<sub>Offer Base</sub> = SP<sub>Offer</sub> + Point<sub>Offer</sub>/10000</p>
+				</li>
+			</ul>
+		</li>
 	</ul>
 	--------------------
-	<h1>Head1</h1>
-	--------------------
-	<h2>Head2</h2>
+	<h2>长期汇率框架</h2>
 	<ul>
-		<img src="./pic/xxx.png"/>
 		<br />
-		<li></li>
-		<br />
-		<li></li>
-		<br />
-		<li></li>
+		<li>国际平价理论
+			<ul>
+				<br />
+				<li>利率平价理论: 汇率取决于利率
+					<ul>
+						<br />
+						<li>抛补利率平价 Covered Interest Rate Parity
+							<ul>
+								<img src="./pic/covered-interest-rate-parity.png" />, 其中S=S<sub>X/Y</sub>
+								<br />
+								<li>投资者通过远期合约规避外汇风险, 那么投资者在国内市场和国外市场的投资收益应该相等. 即均衡情况下的无套利远期汇率水平</li>
+								<br />
+								<li>covered 指的是用远期合约锁定远期汇率, 套利机制能保证抛补利率平价理论成立</li>
+								<br />
+								<li>远期升/贴水百分比: (一般不要用近似公式)</li>
+								<img src="./pic/forward-premium-discount-percentage.png" />
+								<br />
+								<li>抛补利率差异 covered interest differential</li>
+								<img src="./pic/covered-interest-differential.png" />
+							</ul>
+						</li>
+						<br />
+						<li>无抛补利率平价 Uncovered Interest Rate Parity
+							<ul>
+								<br />
+								<li>无抛补利率平价理论的前提是投资者是风险中性的</li>
+								<br />
+								<li>如果投资者不能通过远期合约规避外汇风险, 就不能用F来锁定汇率, 而应使用t时刻S的预期值 E(S<sub>t</sub>)</li>
+								<br />
+								<li>无抛补利率平价理论通常适用于远期汇率不可得或是资本管制限制了套利活动的情况</li>
+								<br />
+								<li>预期汇率的变化体现在名义利率的差别上 [E(S)-S]/S=%ΔS<sub>t</sub>≈r<sub>X</sub>-r<sub>Y</sub></li>
+								<br />
+								<li>无抛补利率平价理论表明对高利率国家和低利率国家, 投资者的投资收益相同</li>
+							</ul>
+						</li>
+						<br />
+						<li>远期利率
+							<ul>
+								<br />
+								<li>如果抛补利率平价成立, 且无抛补利率平价也成立, 则F=E(S<sub>t</sub>), 远期利率是未来预期利率的无偏估计</li>
+								<br />
+								<li>短期而言, 无抛补利率平价很少成立, 长期而言, 无抛补利率平价成立</li>
+							</ul>
+						</li>
+					</ul>
+				</li>
+				<br />
+				<li>购买力评价理论 PPP: 汇率取决于通胀率
+					<ul>
+						<br />
+						<li>绝对购买力平价
+							<ul>
+								<br />
+								<li>在一价律的基础上, 将两个货币依据一篮子商品购买力推导出的汇率水平就是绝对购买力平价</li>
+								<br />
+								<li>绝对购买力平价认为两种货币之间的均衡汇率应由物价水平决定S<sub>X/Y</sub>=CPI<sub>X</sub>/CPI<sub>Y</sub></li>
+								<br />
+								<li>一般情况下, 一价律不完全成立, 所以一篮子商品的价格水平(CPI)不能比较, 所以无法得出绝对购买力平价</li>
+							</ul>
+						</li>
+						<br />
+						<li>相对购买力平价
+							<ul>
+								<br />
+								<li>用货币通胀率代替价格指数, 得到汇率水平的变化率 S<sub>t</sub>/S<sub>0</sub>=[1+π<sub>X</sub>]/[1+π<sub>Y</sub>]</li>
+								<br />
+								<li>%ΔS<sub>t</sub>≈π<sub>X</sub>-π<sub>Y</sub></li>
+								<br />
+								<li>汇率变化取决于通胀率的不同, 高通胀率货币在未来贬值</li>
+								<br />
+								<li>货币通胀率之差约等于汇率变化的幅度</li>
+								<br />
+								<li>在均衡状态下货币竞争力等同, 因为高通胀导致贬值, 同时也导致出口增加</li>
+								<br />
+								<li>没有套利机制, 导致短期条件下, 相对购买力平价不一定成立</li>
+								<br />
+								<li>长期相对购买力平价近似成立</li>
+							</ul>
+						</li>
+						<br />
+						<li>事前购买力平价 ex-ante version of PPP
+							<ul>
+								<br />
+								<li>用远期汇率的预期代替远期汇率 E(S<sub>t</sub>)/S<sub>0</sub>=[1+π<sub>X</sub>]/[1+π<sub>Y</sub>]</li>
+							</ul>
+						</li>
+					</ul>
+				</li>
+				<br />
+				<li>费雪效应: 找到利率平价和PPP之间的关系
+					<ul>
+						<img src="./pic/fisher-effect.png" />
+						<br />
+						<li>当无抛补利率平价成立时(关注名义利率差异), [E(S)-S]/S≈r<sub>d</sub><sup>nominal</sup>-r<sub>f</sub><sup>nominal</sup>,
+							两国名义利率之差约等于即期汇率未来的变化</li>
+						<br />
+						<li>当事前购买力平价成立时(关注通胀率差异), [E(S)-S]/S≈π<sub>d</sub><sup>e</sup>-π<sub>f</sub><sup>e</sup>, 两国通胀率之差约等于即期汇率未来的变化</li>
+						<br />
+						<li>如果无抛补利率平价和事前购买力平价同时成立时
+							<ul>
+								<br />
+								<li><b>实际利率平价理论 real interest rate parity</b>, r<sub>f</sub><sup>real</sup>-r<sub>d</sub><sup>real</sup>=0,
+									两国实际利率相等</li>
+								<br />
+								<li><b>国际费雪效应 international Fisher effect</b>, r<sub>f</sub><sup>nominal</sup>-r<sub>d</sub><sup>nominal</sup>=π<sub>f</sub><sup>e</sup>-π<sub>d</sub><sup>e</sup>,
+									实际利率相等时, 通胀率差异决定名义利率差异</li>
+							</ul>
+						</li>
+					</ul>
+				</li>
+				<br />
+				<li>小结
+					<ul>
+						<br />
+						<li>抛补利率平价成立时, 名义利率差 = 远期升/贴水%</li>
+						<br />
+						<li>无抛补利率平价成立时, 名义利差 = 未来即时汇率预期变化</li>
+						<br />
+						<li>抛补利率平价和无抛补利率平价都成立时, 远期汇率是预期未来即时汇率的无偏估计, 即远期利率平价</li>
+						<br />
+						<li>绝对购买力平价难以成立</li>
+						<br />
+						<li>相对购买力平价在短期难以成立, 在长期近似成立</li>
+						<br />
+						<li>事前购买力平价成立时, 未来即期汇率预期变化等于预期通胀率差异</li>
+						<br />
+						<li>费雪效应成立时, 名义利率差 = 真实利率差 + 预期通胀率差异</li>
+						<br />
+						<li>事前购买力平价和费雪效应都成立时, 预期即时汇率变化 = 名义利率差 = 预期通胀率差</li>
+						<br />
+						<li>如果除 绝对PPP和相对PPP 之外的国际平价条件都成立, 投资者将无法从汇率变化中获利
+							<br />
+							预期即时汇率变化 = 远期升/贴水% = 名义利率差 = 预期通胀率差
+						</li>
+						<br />
+						<li>IMF衡量长期均衡实际汇率水平
+							<ul>
+								<br />
+								<li>宏观经济平衡法 macroeconomic balance approach
+									<p>关注经常账户的变化, 只有宏观经济平衡下, 即经常账户平衡时的汇率水平才是均衡汇率水平, 如果经常账户有顺差或逆差, 表明汇率没有均衡, 货币有升值或贬值</p>
+								</li>
+								<br />
+								<li>外债可持续法 external debt sustainability approach
+									<p>外债达到可持续水平时的汇率水平为均衡汇率水平. 可以通过观察外债与GDP比例判断是否在可持续水平范围</p>
+								</li>
+								<br />
+								<li>计量经济模型 reduced-form econometric model approach
+									<p>根据一些重要的宏观经济变量(贸易平衡, 国外资产净值, 相对生产力等)构建模型</p>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</li>
+			</ul>
+		</li>
 	</ul>
 	--------------------
-	<h1>Head1</h1>
-	--------------------
-	<h2>Head2</h2>
+	<h2>套息交易</h2>
+	<p>在低波动情况下易于获利, 但也易于受异常波动导致崩盘风险 crash risk</p>
+	<ol>
+		<br />
+		<li>根据平价条件, 发现X/Y预期汇率变化趋势</li>
+		<br />
+		<li>借入货币X的低息/无息现金流, 购入货币Y(融资货币 funding currency)的资产 S<sub>0</sub></li>
+		<br />
+		<li>持有到期 S<sub>0</sub>(1+r<sub>Y</sub>)<sup>t</sup></li>
+		<br />
+		<li>出售货币Y的资产 S<sub>0</sub>(1+r<sub>Y</sub>)<sup>t</sup>/S<sub>t</sub></li>
+		<br />
+		<li>偿还货币X贷款, 获利 all in return = [S<sub>0</sub>(1+r<sub>Y</sub>)<sup>t</sup>/S<sub>t</sub>] - (1+r<sub>X</sub>)<sup>t</sup></li>
+	</ol>
 	<ul>
-		<img src="./pic/xxx.png"/>
 		<br />
-		<li></li>
+		<li>all in return ≈ t (r<sub>Y</sub> - r<sub>X</sub>) - %ΔS</li>
 		<br />
-		<li></li>
+		<li>t=1时, all in return ≈ r<sub>Y</sub> - r<sub>X</sub> - %ΔS</li>
 		<br />
-		<li></li>
+		<li>套息交易是杠杆投资(有货币X的贷款)</li>
+		<br />
+		<li>套息交易分布相比正态分布有高峰肥尾负偏的特性</li>
+		<br />
+		<li>r<sub>Y</sub> > r<sub>X</sub>, 货币Y本身具有贬值倾向(%ΔS变大), 易出现贬值风险和崩盘风险</li>
+		<br />
+		<li>风险管理
+			<ul>
+				<br />
+				<li>波动过滤器 volatility filter
+					<p>判断波动导致的贬值风险 (短期)</p>
+				</li>
+				<br />
+				<li>估值过滤器 valuation filter
+					<p>判断汇率是否高于均衡水平上反映的贬值风险 (长期)</p>
+				</li>
+			</ul>
+		</li>
+	</ul>
+	--------------------
+	<h2>国际收支账户对汇率的影响</h2>
+	<ul>
+		<br />
+		<li>国际收支账户 balance of payment account 的定义
+			<ul>
+				<br />
+				<li>经常账户, 记录商品和服务的流动, 包括商品贸易, 服务, 收入, 单边转移支付</li>
+				<br />
+				<li>金融账户/资本账户, 记录金融资本的流动, 包括用于融通商品与劳务信贷, 直接投资, 有价证券投资与贷款等</li>
+				<br />
+				<li>官方结算账户 official reserve, 央行持有的用于支付国际收支和执行国际货币政策的账户, 通常为经常账户和金融账户的调平账户</li>
+				<br />
+				<p>通常, 经常账户等于金融账户, 官方结算账户为零</p>
+				<p>资本账户对汇率的影响更明显</p>
+			</ul>
+		</li>
+		<br />
+		<li>经常账户对汇率的影响
+			<ul>
+				<br />
+				<li>商品流动供需 The flow supply/demand channel
+					<ul>
+						<br />
+						<li>初始赤字 the initial deficit</li>
+						<br />
+						<li>汇率影响进出口价格</li>
+						<br />
+						<li>进出口价格影响进出口需求, 即进出口的价格弹性</li>
+					</ul>
+				</li>
+				<br />
+				<li>组合余额 The portfolio balance channel
+					<p>经常账户不平衡导致财富从资本账户赤字方向资本账户盈余方转移</p>
+				</li>
+				<br />
+				<li>可持续的外债 The debt sustainability channel
+					<p>经常账户赤字国受到国际债务制约</p>
+				</li>
+			</ul>
+		</li>
+		<br />
+		<li>资本账户对汇率的影响
+			<ul>
+				<br />
+				<li>资本账户流动是汇率变化的主要影响因素
+					<ul>
+						<br />
+						<li>一国资本流入时, 该货币需求增加, 货币升值, 同时流入资本能支持该国建设</li>
+						<br />
+						<li>一国资本流出时, 该货币需求减少, 货币贬值, 大幅贬值会对该国经济造成破坏</li>
+					</ul>
+				</li>
+				<br />
+				<li>过量资本流入会产生很多问题, 主要表现在新兴市场
+					<ul>
+						<br />
+						<li>热钱涌入会使本币大幅升值, 但是热钱撤离时会导致本币大幅贬值</li>
+						<br />
+						<li>热钱涌入会推高资产价格, 形成资产泡沫</li>
+						<br />
+						<li>企业和政府债务扩大</li>
+						<br />
+						<li>消费贷款增加</li>
+						<br />
+						<li>会导致低估风险, 高估前景</li>
+					</ul>
+				</li>
+				<br />
+				<li>利率差异对汇率的影响
+					<ul>
+						<br />
+						<li>长期均衡汇率(X/Y) = 实际汇率(X/Y) + 名义利率差异(X-Y) - 通胀率差异(X-Y) - 风险溢价差异(X-Y)</li>
+						<br />
+						<li>如果X的长期利率增长, 长期均衡汇率增长, X的实际价值增长</li>
+						<br />
+						<li>如果新兴市场国家的市场收益率和通胀率都很高, 当局可以通过紧缩的货币政策(上调名义利率)来降低未来通胀预期, 高收益率和低通胀预期会导致该国货币升值, 套息交易有利可图</li>
+						<br />
+						<li>当局可以施行降低风险溢价的政策来提高该国货币的长期均衡价值</li>
+						<br />
+						<li>不同国家间名义利率差异对汇率的影响是阶段性逐步渐进的, 因此政策调整也是逐步渐进的, 导致套息交易的回报和国际资本流向有一定的持续性</li>
+					</ul>
+				</li>
+				<br />
+				<li>股票市场对汇率的影响
+					<ul>
+						<br />
+						<li>短期而言, 股票市场和汇率市场相关性不稳定, 很难通过股票市场预测汇率表现</li>
+						<br />
+						<li>长期而言, 两个市场相关性趋于零</li>
+					</ul>
+				</li>
+			</ul>
+		</li>
+	</ul>
+	--------------------
+	<h2>货币和财政政策</h2>
+	<ul>
+		<br />
+		<li>The Mundell-Fleming Model
+			<p>货币政策在固定汇率下对刺激经济无效, 在浮动汇率下效果显著</p>
+			<p>财政政策在固定汇率下对刺激经济效果显著, 在浮动汇率下效果较小</p>
+			<ul>
+				<br />
+				<li>浮动汇率下
+					<ul>
+						<br />
+						<li>资本流动不受限
+							<ul>
+								<br />
+								<li>扩张的货币政策 --> 贬值</li>
+								<br />
+								<li>紧缩的货币政策 --> 升值</li>
+								<br />
+								<li>扩张的财政政策 --> 升值</li>
+								<br />
+								<li>紧缩的财政政策 --> 贬值</li>
+								<br />
+								<li>扩张的货币 + 扩张的财政 = 不确定</li>
+								<br />
+								<li>紧缩的货币 + 扩张的财政 = 升值</li>
+								<br />
+								<li>扩张的货币 + 紧缩的财政 = 贬值</li>
+								<br />
+								<li>紧缩的货币 + 紧缩的财政 = 不确定</li>
+							</ul>
+						</li>
+						<br />
+						<li>资本流动受限
+							<ul>
+								<br />
+								<li>扩张的货币政策 --> 贬值</li>
+								<br />
+								<li>紧缩的货币政策 --> 升值</li>
+								<br />
+								<li>扩张的财政政策 --> 贬值</li>
+								<br />
+								<li>紧缩的财政政策 --> 升值</li>
+								<br />
+								<li>扩张的货币 + 扩张的财政 = 贬值</li>
+								<br />
+								<li>紧缩的货币 + 扩张的财政 = 不确定</li>
+								<br />
+								<li>扩张的货币 + 紧缩的财政 = 不确定</li>
+								<br />
+								<li>紧缩的货币 + 紧缩的财政 = 升值</li>
+							</ul>
+						</li>
+					</ul>
+				</li>
+				<br />
+				<li>固定汇率下
+					<ul>
+						<br />
+						<li>仅考虑资本流动性不受限(受限情况为封闭经济, 无需分析)
+							<ul>
+								<br />
+								<li>货币政策(扩张/紧缩)受到央行反向公开市场操作(紧缩/扩张)的影响而无效 --> 三元悖论</li>
+								<br />
+								<li>三元悖论 the impossible trinity, 在开放的经济条件下, 货币政策的独立性, 汇率的稳定性, 资本的完全流动性, 三者不可兼得</li>
+								<br />
+								<li>财政政策(扩张/紧缩)受到央行同向公开市场操作(扩张/紧缩)的影响而放大</li>
+							</ul>
+						</li>
+					</ul>
+				</li>
+			</ul>
+		</li>
+		<br />
+		<li>决定汇率的货币模型
+			<ul>
+				<br />
+				<li>M-F模型和货币模型的比较
+					<ul>
+						<br />
+						<li>M-F模型侧重短期效果, 认为通胀不变</li>
+						<br />
+						<li>货币模型侧重长期效果, 主要看物价水平</li>
+					</ul>
+				</li>
+				<br />
+				<li>货币模型
+					<ul>
+						<br />
+						<li>货币模型侧重长期, PPP在短期不一定成立, 在长期成立</li>
+						<br />
+						<li>扩张的货币政策在长期导致物价上升, 本币贬值</li>
+						<br />
+						<li>紧缩的货币政策在长期导致物价下降, 本币升值</li>
+					</ul>
+				</li>
+				<br />
+				<li>多恩布什超调模型 Dornbusch overshooting model
+					<ul>
+						<br />
+						<li>多恩布什超调模型同时关注短期和长期效果</li>
+						<br />
+						<li>短期情况下, 由于PPP不一定成立, 扩张的货币政策-->利率下降-->资本外流-->货币贬值(名义 & 实际汇率)</li>
+						<br />
+						<li>长期情况下, 多恩布什超调模型结论与货币模型相同, 由于PPP成立, 扩张的货币政策-->长期物价上涨-->名义汇率贬值, 实际汇率不变</li>
+						<br />
+						<li>短期贬值到长期回归均衡的情况叫汇率超调</li>
+					</ul>
+				</li>
+			</ul>
+		</li>
+		<br />
+		<li>资产组合平衡模型 The portfolio balance approach
+			<ul>
+				<br />
+				<li>M-F模型和资产组合平衡模型的比较
+					<ul>
+						<br />
+						<li>M-F模型侧重财政政策的短期效果
+							<p>短期: 扩张的财政政策-->实际利率利差扩大-->本币升值</p>
+						</li>
+						<br />
+						<li>资产组合平衡模型侧重财政政策的长期效果
+							<p>长期: 扩张的财政政策-->政府外债增加-->央行货币化负债 & 财政立场趋向紧缩-->本币贬值</p>
+						</li>
+					</ul>
+				</li>
+			</ul>
+		</li>
+	</ul>
+	--------------------
+	<h2>汇率干预和控制</h2>
+	<ul>
+		<br />
+		<li>良好的干预包括
+			<ul>
+				<br />
+				<li>减少通胀率, 减少通胀率波动</li>
+				<br />
+				<li>更灵活的汇率制度</li>
+				<br />
+				<li>改善财政仓位</li>
+				<br />
+				<li>国有实体私有化</li>
+				<br />
+				<li>资本市场自由化</li>
+				<br />
+				<li>加强外汇管理和控制</li>
+			</ul>
+		</li>
+		<br />
+		<li>干预目标
+			<ul>
+				<br />
+				<li>确保本币不会过度升值</li>
+				<br />
+				<li>减少过度的外资流入</li>
+				<br />
+				<li>确保政策汇率不会吸引过度的外资流入, 形成独立的财政政策</li>
+			</ul>
+		</li>
+		<br />
+		<li>央行干预的有效性
+			<ul>
+				<br />
+				<li>发达国家本币交易规模远大于外汇储备, 央行干预有效性偏低</li>
+				<br />
+				<li>新兴市场国家本币交易规模与外汇储备的比例没有那么大, 央行干预有效性高</li>
+				<br />
+				<li>外汇储备相对与外汇市场交易量的规模决定了国家干预外汇的有效性</li>
+			</ul>
+		</li>
+		<br />
+		<li>
+			<ul>资金流
+				<p>资金流的驱动因素有两点, 都可以诱发泡沫</p>
+				<p>本质是全球总热钱高于全球高利率资金需求的总和, 导致区域泡沫</p>
+				<br />
+				<li>pull factors: 本国经济发展好, 吸引外资(本国泡沫)</li>
+				<br />
+				<li>push factors: 低利率国家资金被推向国外高收益市场(外国泡沫)</li>
+			</ul>
+		</li>
+		<br />
+		<li>资本管制
+			<ul>
+				<br />
+				<li>成功的资本管制能够提高国家货币政策的独立性</li>
+				<br />
+				<li>资本管制不直接依赖于外汇储备(注意与外汇干预不同, 外汇储备越高外汇干预越有效)</li>
+				<br />
+				<li>资本流量持续越长, 资本量越大, 资本管制越无效</li>
+			</ul>
+		</li>
+	</ul>
+	--------------------
+	<h2>货币危机 currency crisis 的信号</h2>
+	<ol>
+		<br />
+		<li>货币危机发生前, 资本自由进入或流出</li>
+		<br />
+		<li>货币危机发生前, 相对与本国GDP而言的大量外国资本流入(尤其是短期资本)</li>
+		<br />
+		<li>货币危机通常早于或与银行危机同时发生</li>
+		<br />
+		<li>相对于浮动汇率国家, 固定汇率国家或部分固定汇率国家更容易发生货币危机</li>
+		<br />
+		<li>作为应对货币危机的办法, 本国外汇储备大幅下降</li>
+		<br />
+		<li>货币危机发生前, 本国实际汇率持续高于历史均值复归水平</li>
+		<br />
+		<li>货币危机发生前, 贸易条件(进出口)大幅恶化</li>
+		<br />
+		<li>广义货币及M2相对于银行储备的比率增加(M1比例减少)</li>
+		<br />
+		<li>货币危机发生前, 通胀率显著上升</li>
+	</ol>
+	<ul>
+		<br />
+		<li>第5-7点是相关的, 货币危机发生前本国汇率持续高企-->进出口恶化-->外汇储备降低-->应对货币危机的过程中外汇储备进一步下降</li>
 	</ul>
 	--------------------
 	<br />
