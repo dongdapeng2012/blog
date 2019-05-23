@@ -3,46 +3,257 @@
 
 <head>
 	<meta charset="utf-8">
-	<title id="readingX">Chaptor </title>
+	<title id="reading30">Chaptor 30 Discounted devidend valuation</title>
 </head>
 
 <body>
-
-
-	
 	--------------------
-	<h2></h2>
-
-
+	<h2>PV 模型</h2>
 	--------------------
-
-
 	<ul>
 		<br />
-		<li></li>
+		<li>基于未来CF的PV, PVFCF
+			<ul>
+				<img src="./pic/pvfcf.png" />
+			</ul>
+		</li>
 		<br />
-		<li></li>
-		<br />
-		<li></li>
+		<li>期望现金流
+			<ul>
+				<br />
+				<li>DDM, discounted dividend model
+					<ul>
+						<br />
+						<li>DDM适用条件
+							<ul>
+								<br />
+								<li>公司有股利支付</li>
+								<br />
+								<li>有股利政策, 使股利与公司利润有稳定关联</li>
+								<br />
+								<li>投资者不是控股方</li>
+							</ul>
+						</li>
+					</ul>
+				</li>
+				<br />
+				<li>FCFF 公司现金流 / FCFE 权益现金流
+					<ul>
+						<br />
+						<li>FCFF= CFO - 资本支出</li>
+						<br />
+						<li>FCFE= FCFF - 债务支付</li>
+						<br />
+						<li>FCFF/FCFE 适用条件
+							<ul>
+								<br />
+								<li>公司不发股利或相对FCFE很少</li>
+								<br />
+								<li>FCFF和公司盈利性一致</li>
+								<br />
+								<li>投资者是控股方</li>
+							</ul>
+						</li>
+					</ul>
+				</li>
+				<br />
+				<li>留存收益模型适用条件
+					<ul>
+						<br />
+						<li>不支付股利, 也不用FCF模型</li>
+						<br />
+						<li>FCFF估计为负</li>
+					</ul>
+				</li>
+			</ul>
+		</li>
 	</ul>
-
 	<br />
-	
 	--------------------
-	<h2></h2>
-
-	
-
+	<h2>DDM</h2>
 	--------------------
-
-
 	<ul>
 		<br />
-		<li></li>
+		<li>single holding period / multi holding period
+			<ul>
+				<br />
+				<li>单期<br />
+					<img src="./pic/ddm-single-holding-period.png" /></li>
+				<br />
+				<li>两期<br />
+					<img src="./pic/ddm-two-holding-period.png" /></li>
+				<br />
+				<li>多期<br />
+					<img src="./pic/ddm-multi-holding-period.png" />
+				</li>
+				<br />
+				<li>永续
+					<ul>
+						<img src="./pic/ddm-infinite-holding-period.png" />
+						<br />
+						<li>当D不变时<br />
+							<img src="./pic/ddm-infinite-holding-period-const-d.png" />
+						</li>
+					</ul>
+				</li>
+			</ul>
+		</li>
 		<br />
-		<li></li>
+		<li>成长阶段
+			<ul>
+				<br />
+				<li>一个成长阶段 GGM, Gordon growth model
+					<ul>
+						<img src="./pic/ggm.png" />
+						<br />
+						<li>fixed-rate perpetual preferred stock 永续固定利率优先股<br />
+							<img src="./pic/ddm-infinite-holding-period-const-d.png" />
+						</li>
+						<br />
+						<li>股份回购
+							<ul>
+								<br />
+								<li>以市价回购的影响是中性的</li>
+								<br />
+								<li>现金股利 vs. 回购
+									<ul>
+										<br />
+										<li>公司不保证回购, 但不愿意降低股利</li>
+										<br />
+										<li>现金股利比回购更容易预测</li>
+										<br />
+										<li>出售股份的股东有心理反应</li>
+									</ul>
+								</li>
+							</ul>
+						</li>
+						<br />
+						<li>隐含的股利成长率<br />
+							<img src="./pic/ggm-implied-dividend-growth-rate.png" />
+						</li>
+						<br />
+						<li>PVGO, PV of growth opportunities
+							<ul>
+								<br />
+								<li>无增长
+									<ul>
+										<br />
+										<li>公司没有NPV>0的项目</li>
+										<br />
+										<li>公司所有盈利全部用于分红</li>
+										<br />
+										<li>股权回报率ROE恒定</li>
+									</ul>
+								</li>
+								<br />
+								<li>PVGO 适用条件
+									<ul>
+										<br />
+										<li>假设所有盈利全部用于分红</li>
+										<br />
+										<li>永续经营E<sub>1</sub>=D<sub>0</sub></li>
+										<br />
+										<li>E不变, 没有growth value</li>
+									</ul>
+								</li>
+								<br />
+								<li>V<sub>0</sub>=E<sub>1</sub>/r+PVGO<br />
+									其中E<sub>1</sub>=第一期earnings</li>
+								<br />
+								<li>no-growth value per share = E<sub>1</sub>/r<br />
+									其中r是要求回报率</li>
+								<br />
+								<li>PVGO = D<sub>1</sub>/(r-g) - E<sub>1</sub>/r</li>
+							</ul>
+						</li>
+						<br />
+						<li>P/E ratio
+							<ul>
+								<img src="./pic/ggm-p-e-pvgo.png" />
+								<br />
+								<img src="./pic/ggm-p-e1.png" />
+								<br />
+								<img src="./pic/ggm-p-e0.png" />
+							</ul>
+						</li>
+						<br />
+						<li>要求回报率的估计
+							<ul>
+								<img src="./pic/ggm-required-return.png" />
+							</ul>
+						</li>
+					</ul>
+				</li>
+				<br />
+				<li>两个成长阶段 two-stage growth model
+					<ul>
+						<br />
+						<li>成长阶段 growth phase
+							<ul>
+								<br />
+								<li>supernormal growth, g<sub>S</sub></li>
+								<br />
+								<li>transition phase</li>
+								<br />
+								<li>muture phase, g<sub>L</sub></li>
+							</ul>
+						</li>
+						<br />
+						<li>二阶段DDM, 假设一阶段末的终值V<sub>n</sub>, 同时也是二阶段的初值<br />
+							<img src="./pic/ddm-two-stage-ddm.png" />
+						</li>
+						<br />
+						<li>无股利支付的估值模型
+							<ul>
+								<br />
+								<li>假设在下一期支付$x时有g的增长率
+									<br />
+									则V<sub>n</sub> = D<sub>n+1</sub>/(r-g)
+									<br />
+									V<sub>0</sub> = V<sub>n</sub>/(1+r)<sup>n</sup>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</li>
+				<br />
+				<li>两个成长阶段 H-model
+					<ul>
+						<br />
+						<li>成长期采用线性递减的增长率</li>
+						<br />
+						<li><img src="./pic/h-model.png" /><br />
+							其中H=第一阶段时间的一半</li>
+					</ul>
+				</li>
+				<br />
+				<li>三个成长阶段 three-stage growth model
+					<ul>
+						<br />
+						<li>方法一, 列表, 逐期计算</li>
+						<br />
+						<li>方法二, 先计算第二三阶段, 再将结果作为输入计算第一阶段</li>
+					</ul>
+				</li>
+				<br />
+				<li>任意DDM要求回报率的估计<br />
+					<img src="./pic/ddm-required-return.png" />
+				</li>
+			</ul>
+		</li>
+	</ul>
+	--------------------
+	<h2>可持续增长率 SGR</h2>
+	--------------------
+	<ul>
 		<br />
-		<li></li>
+		<li>g = b × ROE<br />
+			其中 b = 收益留存率 = 1-股利支付率
+		</li>
+		<br />
+		<li>在此基础上可以对g进行杜邦分析<br />
+			<img src="./pic/sustainable-growth-rate-dupont.png" />
+		</li>
 	</ul>
 	--------------------
 	<br />

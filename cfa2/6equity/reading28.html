@@ -3,46 +3,347 @@
 
 <head>
 	<meta charset="utf-8">
-	<title id="readingX">Chaptor </title>
+	<title id="reading28">Chaptor 28 Return</title>
 </head>
 
 <body>
-
-
-	
 	--------------------
-	<h2></h2>
-
-
+	<h2>Concepts</h2>
 	--------------------
-
-
 	<ul>
 		<br />
-		<li></li>
+		<li>holding period return, HPR
+			<ul>
+				<br />
+				<li>realized holding period return</li>
+				<br />
+				<li>expected holding period return</li>
+			</ul>
+		</li>
 		<br />
-		<li></li>
+		<li>required return
+			<ul>
+				<br />
+				<li>cost of equity</li>
+				<br />
+				<li>cost of debt</li>
+				<br />
+				<li>expected alpha = expected HPR - required return</li>
+				<br />
+				<li>realized alpha = 真实HPR - 同期的 contemoiraneous required return</li>
+			</ul>
+		</li>
 		<br />
-		<li></li>
+		<li>由内在价值估计得到的期望回报率估计
+			<ul>
+				<br />
+				<li>mispricing
+					<ul>
+						<br />
+						<li>increase, 低估超过25%</li>
+						<br />
+						<li>stay the same, 低估不到25%</li>
+						<br />
+						<li>be partially corrected, 低估不到15%</li>
+						<br />
+						<li>be corrected, 估值准确</li>
+						<br />
+						<li>overcorrected, 高估</li>
+					</ul>
+				</li>
+				<br />
+				<li>E(R<sub>τ</sub>) ≈ r<sub>τ</sub> + (V<sub>0</sub>-P<sub>0</sub>)/P<sub>0</sub><br />
+					其中E(R<sub>τ</sub>)=期望HPR, r<sub>τ</sub>=要求回报率<br />
+					V<sub>0</sub>=内在价值, P<sub>0</sub>=价格
+				</li>
+			</ul>
+		</li>
+		<br />
+		<li>discount rate</li>
+		<br />
+		<li>内部收益率
+			<ul>
+				<br />
+				<li>内在价值 = 年初股利 / (要求回报率 - 股利增长期望)</li>
+				<br />
+				<li>将内在价值用市场价格替换, 得到 要求回报率 = 年初股利 / 市场价格 + 股利增长期望</li>
+			</ul>
+		</li>
 	</ul>
-
 	<br />
-	
 	--------------------
-	<h2></h2>
-
-	
-
+	<h2>权益风险溢价</h2>
 	--------------------
-
-
 	<ul>
 		<br />
-		<li></li>
+		<li>对全市场
+			<ul>
+				<br />
+				<li>权益要求回报率 r<sub>e</sub>=r<sub>f</sub>+权益风险溢价</li>
+				<br />
+				<li>权益风险溢价=R<sub>M</sub>-r<sub>f</sub></li>
+			</ul>
+		</li>
 		<br />
-		<li></li>
+		<li>对特定share i
+			<ul>
+				<br />
+				<li>r<sub>e,i</sub>=r<sub>f</sub>+β<sub>i</sub>×权益风险溢价</li>
+				<br />
+				<li>或者 r<sub>e,i</sub>=r<sub>f</sub>+权益风险溢价+其他风险溢价</li>
+			</ul>
+		</li>
 		<br />
-		<li></li>
+		<li>历史估计
+			<ul>
+				<br />
+				<li>可以用历史估计的情况
+					<ul>
+						<br />
+						<li>指数稳定</li>
+						<br />
+						<li>期间越长数据样本越多, 但经济变化可能性越大</li>
+						<br />
+						<li>算术平均高估要求回报率与权益风险溢价, 几何平均低估要求回报率与权益风险溢价</li>
+						<br />
+						<li>长期国债低估要求回报率与权益风险溢价</li>
+						<br />
+						<li>有幸存者偏误, 需要下调修正 downward adjustment</li>
+					</ul>
+				</li>
+			</ul>
+		</li>
+		<br />
+		<li>前瞻性估计 forward looking estimation
+			<ul>
+				<br />
+				<li>GGM估计, Gordon Growth Model Estimations
+					<ul>
+						<br />
+						<li>GGM权益风险溢价 = 大盘分红比率 D<sub>1</sub>/P<sub>0</sub> + 预期股市增长率g - 长期国债收益率</li>
+					</ul>
+				</li>
+				<br />
+				<li>宏观经济模型估计 macroeconomic model estimation
+					<ul>
+						<br />
+						<li>宏观经济权益风险溢价=(1+g<sub>通胀</sub>)(1+g<sub>真实GDP</sub>)(1+g<sub>P/E</sub>)-1+收入部分EINC-期望r<sub>f</sub><br />
+							其中g<sub>通胀</sub>≈国债利率-通胀保值债券TIPS利率<br />
+							g<sub>真实GDP</sub>用g<sub>EPS</sub>代替<br />
+							g<sub>P/E</sub>代表公司股价被高估还是低估
+						</li>
+					</ul>
+				</li>
+				<br />
+				<li>调查问卷法</li>
+				<br />
+				<li>三者比较
+					<ul>
+						<br />
+						<li>GGM, 优点: 对发达国家有效, 样本来源多, 数据有效; 缺点: 模型需要更新, 并且假设g恒定</li>
+						<br />
+						<li>宏观, 优点: 已证, 用当前数据数据易得; 缺点: 只用于发达国家</li>
+						<br />
+						<li>Survey, 优点: 简单; 缺点: 对不同的群体调查结果不同</li>
+					</ul>
+				</li>
+			</ul>
+		</li>
+		<br />
+		<li>历史估计法和前瞻性估计法的对比
+			<ul>
+				<br />
+				<li>历史估计法, 优点: 无偏估计量, 客观; 缺点: 准确性, 难于保持稳定假设, 幸存者偏误, 反周期的风险溢价</li>
+				<br />
+				<li>前瞻估计法, 优点: 数据可得, 没有数据稳定性问题; 缺点, 过于主观, 受模型限制</li>
+			</ul>
+		</li>
+	</ul>
+	--------------------
+	<h2>权益要求回报率</h2>
+	--------------------
+	<ul>
+		<br />
+		<li>CAPM the capital asset pricing model
+			<ul>
+				<br />
+				<li>r<sub>e</sub>=r<sub>f</sub>+β<sub>i</sub>×权益风险溢价</li>
+				<br />
+				<li>两个基本假设
+					<ul>
+						<br />
+						<li>投资者都是风险厌恶的</li>
+						<br />
+						<li>投资者都基于组合的平均回报和回报的方差做投资决策</li>
+					</ul>
+				</li>
+				<br />
+				<li>上市公司的β
+					<ul>
+						<br />
+						<li>影响真实β的两个选择
+							<ul>
+								<br />
+								<li>代表市场的指数的选择</li>
+								<br />
+								<li>数据历史长度和频率</li>
+							</ul>
+						</li>
+						<br />
+						<li>adjusted β = 2/3 × unadjusted β + 1/3 × 1.0<br />
+							抵消回归影响 beta drift
+						</li>
+					</ul>
+				</li>
+				<br />
+				<li>小盘股和非上市公司
+					<ul>
+						<br />
+						<li>去杠杆化β<sub>U</sub> ≈ [1/(1+D/E)]β<sub>E</sub></li>
+						<br />
+						<li>杠杆化β<sub>E</sub> ≈ (1+D/E)β<sub>U</sub> = (A/E)β<sub>U</sub></li>
+						<br />
+						<li>步骤
+							<ul>
+								<br />
+								<li>选定benchmark</li>
+								<br />
+								<li>估计benchmark的beta</li>
+								<br />
+								<li>用去杠杆化公式求得β<sub>U</sub>(同时用于benchmark和公司)</li>
+								<br />
+								<li>用杠杆化公式求得公司β<sub>E</sub></li>
+							</ul>
+						</li>
+					</ul>
+				</li>
+			</ul>
+		</li>
+		<br />
+		<li>多因素模型 multifactor models
+			<ul>
+				<br />
+				<li>risk premium = factor sensitivity β × factor risk premium</li>
+				<br />
+				<li>FFM, the fama-french model
+					<ul>
+						<br />
+						<li>r<sub>i</sub>=r<sub>f</sub>+β<sub>mkt</sub>×权益风险溢价+β<sub>size</sub>×SMB+β<sub>value</sub>×HML
+						</li>
+						<br />
+						<li>β<sub>mkt</sub>, 代表市场风险, 大于1, 该股风险大于市场风险; 小于1, 该股风险小于市场风险</li>
+						<br />
+						<li>β<sub>size</sub>, 代表规模, 大于0, 小市值; 小于0, 大市值</li>
+						<br />
+						<li>β<sub>value</sub>, 代表公司风格, 大于0, 价值型; 小于0, 成长型</li>
+					</ul>
+				</li>
+				<br />
+				<li>PSM, the Pastor-Stambaugh模型, FFM的扩展
+					<ul>
+						<br />
+						<li>比FFM额外增加β<sub>LIQ</sub>×LIQ</li>
+						<br />
+						<li>β<sub>LIQ</sub>流动性beta, 基准为0</li>
+						<br />
+						<li>LIQ, 流动性因素</li>
+					</ul>
+				</li>
+				<br />
+				<li>宏观经济与统计的多因素模型
+					<ul>
+						<br />
+						<li>r<sub>i</sub>=T-bill rate<br />
+							+ confidence risk 溢价<br />
+							- time horizon risk 溢价<br />
+							- inflation risk 溢价<br />
+							+ business-cycle risk 溢价<br />
+							+ market-timing risk 溢价</li>
+						<br />
+						<li>market-timing risk 表示前面四个risk不能解释的问题</li>
+					</ul>
+				</li>
+			</ul>
+		</li>
+		<br />
+		<li>累加法 build up apporaches
+			<ul>
+				<br />
+				<li>私企累加法
+					<ul>
+						<br />
+						<li>r<sub>i</sub>=r<sub>f</sub>+权益风险溢价+规模溢价+公司特定溢价</li>
+						<br />
+						<img src="./pic/required-return-estimation-private-business.png" />
+					</ul>
+				</li>
+				<br />
+				<li>债券收益加风险溢价
+					<ul>
+						<br />
+						<li>r<sub>i</sub> = 长期YTM+风险溢价 = r<sub>通胀</sub>+r<sub>真实</sub>+违约风险溢价</li>
+					</ul>
+				</li>
+			</ul>
+		</li>
+		<br />
+		<li>CAPM, 多因素, 累加法比较
+			<ul>
+				<br />
+				<li>CAPM, 优点: 简单, 仅一个因素; 缺点: 但解释力弱</li>
+				<br />
+				<li>多因素, 优点: 解释力强; 缺点: 更复杂</li>
+				<br />
+				<li>累加法, 优点: 简单, 可用于非上市公司; 缺点: 历史值可能不适用现在的市场环境</li>
+			</ul>
+		</li>
+		<br />
+		<li>国际投资问题
+			<ul>
+				<br />
+				<li>汇率风险</li>
+				<br />
+				<li>数据与模型问题</li>
+				<br />
+				<li>国家风险溢价
+					<ul>
+						<br />
+						<li>r<sub>e</sub> = 发达国家R<sub>e</sub> + 国家溢价</li>
+					</ul>
+				</li>
+				<br />
+				<li>国家风险评级模型</li>
+			</ul>
+		</li>
+	</ul>
+	--------------------
+	<h2>WACC</h2>
+	--------------------
+	<ul>
+		<br />
+		<li>
+			<ul>
+				<br />
+				<li>WACC = 债务MV/(债务MV+权益MV) × 债务要求回报率 r<sub>d</sub> × (1-t) + 权益MV/(债务MV+权益MV) × r<sub>e</sub><br />
+					= D/A × 债务要求回报率 r<sub>d</sub> × (1-t) + E/A × r<sub>e</sub>
+				</li>
+			</ul>
+		</li>
+		<br />
+		<li>折现率的选择
+			<ul>
+				<br />
+				<li>对什么的折现选择什么折现率</li>
+				<br />
+				<li>对权益的CF折现, 用股票的要求回报率折现</li>
+				<br />
+				<li>对公司整体, 用WACC折现</li>
+				<br />
+				<li>名义CF, 用名义折现率</li>
+				<br />
+				<li>实际CF, 用实际折现率</li>
+			</ul>
+		</li>
 	</ul>
 	--------------------
 	<br />

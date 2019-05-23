@@ -3,46 +3,155 @@
 
 <head>
 	<meta charset="utf-8">
-	<title id="readingX">Chaptor </title>
+	<title id="reading32">Chaptor 32 Price and EV Multiples</title>
 </head>
 
 <body>
-
-
-	
 	--------------------
-	<h2></h2>
-
-
+	<h2>Price Multiples</h2>
 	--------------------
-
-
 	<ul>
 		<br />
-		<li></li>
+		<li>P/E
+			<ul>
+				<br />
+				<li>P/E代表企业每一元赚钱能力可以卖出多少钱的价格, 反过来也是投资人每单位股份的回收期</li>
+				<br />
+				<li>tailing P/E = 当前价格 / 最后一年的EPS
+					<ul>
+						<br />
+						<li>basic EPS</li>
+						<br />
+						<li>diluted EPS</li>
+						<br />
+						<li>nonrecurring items 需要调整去掉, 只关注underlying earnings</li>
+						<br />
+						<li>business cycle 调整
+							<ul>
+								<br />
+								<li>normalized EPS = 最近一个全周期的平均EPS = 最近一个全周期的平均ROE × 当前企业book value per share</li>
+							</ul>
+						</li>
+						<br />
+						<li>会计方法调整, 比如LIFO - FIFO</li>
+						<br />
+						<li>当EPS太小会导致P/E过大失真, 可以用inverse price ratio</li>
+					</ul>
+				</li>
+				<br />
+				<li>forward P/E = 当前价格 / 未来一年的EPS估计</li>
+				<br />
+				<li>justified P/E
+					<ul>
+						<br />
+						<li>forward<br />
+							<img src="./pic/justified-forward-p-e.png" /></li>
+						<br />
+						<li>trailing<br />
+							<img src="./pic/justified-tailing-p-e.png" /></li>
+					</ul>
+				</li>
+				<br />
+				<li>一家公司有高于平均的g估计时, 有高于benchmark的P/E就合理</li>
+				<br />
+				<li>一家公司有高于平均的risk时, 有低于benchmark的P/E就合理</li>
+				<br />
+				<li>PEG, P/E-to-g
+					<ul>
+						<br />
+						<li>PEG较小代表成长更快, 更受投资者欢迎</li>
+					</ul>
+				</li>
+				<br />
+				<li>justified price = 从自身历史均值或中值 P/E × 最近EPS</li>
+			</ul>
+		</li>
 		<br />
-		<li></li>
+		<li>市净率 P/BV
+			<ul>
+				<br />
+				<li>BV per share = 普通股equity / 普通股数<br />
+					其中普通股Equity = 总Equity - 高于普通股的部分
+				</li>
+				<br />
+				<li>P<sub>0</sub>/B<sub>0</sub> = (ROE-g)/(r-g) = 1 + PV of 未来留存收益期望/B<sub>0</sub></li>
+				<br />
+				<li>留存收益 residual earnings = (ROE- rr) × B<sub>0</sub></li>
+			</ul>
+		</li>
 		<br />
-		<li></li>
+		<li>市销率 P/S
+			<ul>
+				<img src="./pic/p-s.png" />
+				<br />
+				<li>PM profit margin 上升, P/S上升</li>
+				<br />
+				<li>g上升, justified P/S 上升</li>
+			</ul>
+		</li>
+		<br />
+		<li>市现率 P/CF</li>
+		<br />
+		<li>股息收益 devidend yield D/P
+			<ul>
+				<br />
+				<li>trailing, D<sub>0</sub>/P<sub>0</sub> = (r-g) / (1+g)</li>
+				<br />
+				<li>forward, D<sub>1</sub>/P<sub>0</sub> = r-g</li>
+			</ul>
+		</li>
 	</ul>
-
 	<br />
-	
 	--------------------
-	<h2></h2>
-
-	
-
+	<h2>Enterprise value multiples</h2>
 	--------------------
-
-
 	<ul>
 		<br />
-		<li></li>
+		<li>EV/EBITDA
+			<ul>
+				<br />
+				<li>EV = 普通股MV + 优先股MV + 负债MV - Cash & Investments</li>
+			</ul>
+		</li>
 		<br />
-		<li></li>
+		<li><img src="./pic/alternative-denominators-in-enterprise-value-mulitples.png" /></li>
 		<br />
-		<li></li>
+		<li>EV/S</li>
+	</ul>
+	--------------------
+	<h2>动量指标</h2>
+	--------------------
+	<ul>
+		<br />
+		<li>超额预期收益 unexpected earnings, or earnings surprise</li>
+		<br />
+		<li>standardized unexpected earnings, SUE
+			<ul>
+				<br />
+				<li><img src="./pic/sue.png" /></li>
+			</ul>
+		</li>
+	</ul>
+	--------------------
+	<h2>调和平均</h2>
+	--------------------
+	<ul>
+		<br />
+		<li>调和平均
+			<ul>
+				<br />
+				<li><img src="./pic/harmonic-mean.png" /></li>
+			</ul>
+		</li>
+		<br />
+		<li>加权调和平均
+			<ul>
+				<br />
+				<li><img src="./pic/weighted-harmonic-mean.png" /></li>
+			</ul>
+		</li>
+		<br />
+		<li><img src="./pic/alternative-mean-p-e.png" /></li>
 	</ul>
 	--------------------
 	<br />

@@ -3,46 +3,196 @@
 
 <head>
 	<meta charset="utf-8">
-	<title id="readingX">Chaptor </title>
+	<title id="reading33">Chaptor Residual Income Valuation</title>
 </head>
 
 <body>
-
-
-	
 	--------------------
-	<h2></h2>
-
-
+	<h2>Residual Income</h2>
 	--------------------
-
-
 	<ul>
 		<br />
-		<li></li>
+		<li>剩余收入也叫经济利润
+			<ul>
+				<br />
+				<li>RI = 净利润 - 要求回报率 × 初始投资</li>
+			</ul>
+		</li>
 		<br />
-		<li></li>
+		<li>capital charge = Equity charge + debt charge</li>
 		<br />
-		<li></li>
+		<li>economic value added, EVA = 税后营运净利润 NOPAT - cost of capital c% × TC total capital
+			<ul>
+				<br />
+				<li>NOPAT仅有营运部分, 所以非营运部分需要加回</li>
+				<br />
+				<li>R&D, 未开始营收之前的资本投入suspend, 递延税, LIFO库存和reserve</li>
+				<br />
+				<li>营运租记为资本租</li>
+				<br />
+				<li>非经常项目调整</li>
+			</ul>
+		</li>
+		<br />
+		<li>market value added, MVA = MV - BV of total capital</li>
 	</ul>
-
 	<br />
-	
 	--------------------
-	<h2></h2>
-
-	
-
+	<h2>RI model</h2>
 	--------------------
-
-
 	<ul>
 		<br />
-		<li></li>
+		<li>General RI model
+			<ul>
+				<br />
+				<li><img src="./pic/residual-income-model.png" /></li>
+			</ul>
+		</li>
 		<br />
-		<li></li>
+		<li>一个阶段的RI valuation
+			<ul>
+				<br />
+				<li>基于持续经营的GGM, 假设RI永续增长</li>
+				<br />
+				<li>V<sub>0</sub>=B<sub>0</sub>+(ROE-r)/(r-g)×B<sub>0</sub></li>
+				<br />
+				<li>若ROE>r, P<sub>0</sub>>B<sub>0</sub>, P/B>1</li>
+				<br />
+				<li>若ROE=r, P<sub>0</sub>=B<sub>0</sub>, P/B=1</li>
+				<br />
+				<li>若ROE&lt;r, P<sub>0</sub>&lt;B<sub>0</sub>, P/B&lt;1</li>
+			</ul>
+		</li>
 		<br />
-		<li></li>
+		<li>多阶段RI valuation
+			<ul>
+				<br />
+				<li>RI永续增长不合理</li>
+				<br />
+				<li><img src="./pic/residual-income-model-multi-stage.png" /></li>
+				<br />
+				<li>ω - persistence factor
+					<ul>
+						<br />
+						<li>自T年以后, 按1+r-ω为折现率, ω∈[0,1]</li>
+						<br />
+						<li><img src="./pic/residual-income-model-multi-stage-persistence-factor.png" /></li>
+						<br />
+						<li>ω高
+							<ul>
+								<br />
+								<li>公司留存收益大</li>
+								<br />
+								<li>有些行业天生ω高</li>
+							</ul>
+						</li>
+						<br />
+						<li>ω低
+							<ul>
+								<br />
+								<li>目前ROE高, 不可持续</li>
+								<br />
+								<li>公司有大量的非经常项目</li>
+								<br />
+								<li>会计应计账目多, 可能存在粉饰财报</li>
+							</ul>
+						</li>
+					</ul>
+				</li>
+			</ul>
+		</li>
+		<br />
+		<li>RI model 优点
+			<ul>
+				<br />
+				<li>内在价值受终值影响小</li>
+				<br />
+				<li>数据易得</li>
+				<br />
+				<li>适用无分红, 无正FCF, FCF波动大的项目</li>
+				<br />
+				<li>更关注经济利润</li>
+			</ul>
+		</li>
+		<br />
+		<li>RI model 缺点
+			<ul>
+				<br />
+				<li>依赖会计数据, 易受管理层操控</li>
+				<br />
+				<li>会计数据受大量调整
+					<ul>
+						<br />
+						<li>BS
+							<ul>
+								<br />
+								<li>库存</li>
+								<br />
+								<li>递延税(资产/负债)</li>
+								<br />
+								<li>运营租</li>
+								<br />
+								<li>reserves & allowances</li>
+								<br />
+								<li>无形资产</li>
+							</ul>
+						</li>
+						<br />
+						<li>nonrecurring
+							<ul>
+								<br />
+								<li>unusual</li>
+								<br />
+								<li>extraodinary</li>
+								<br />
+								<li>restructing charges</li>
+								<br />
+								<li>不在持续经营的项目</li>
+								<br />
+								<li>accounting changes</li>
+							</ul>
+						</li>
+					</ul>
+				</li>
+				<br />
+				<li>假设干净盈余关系, 适用少</li>
+				<br />
+				<li>假设利息费用正确反映债务成本</li>
+			</ul>
+		</li>
+		<br />
+		<li>适用于
+			<ul>
+				<br />
+				<li>无分红或分红波动大的公司</li>
+				<br />
+				<li>未来FCF可能为负</li>
+				<br />
+				<li>终值不能可靠计量</li>
+			</ul>
+		</li>
+		<br />
+		<li>不适用于
+			<ul>
+				<br />
+				<li>干净盈余关系 clean surplus 显然被违反
+					<ul>
+						<br />
+						<li>融资项目的未确认的变化</li>
+						<br />
+						<li>外汇调整</li>
+						<br />
+						<li>某些 pension 调整</li>
+						<br />
+						<li>PPE和IFRS下的无形资产surplus重定价的改变</li>
+						<br />
+						<li>IFRS下某些类别的负债由于信用风险引起的fair value FV变化</li>
+					</ul>
+				</li>
+				<br />
+				<li>BV, ROE难以预测</li>
+			</ul>
+		</li>
 	</ul>
 	--------------------
 	<br />

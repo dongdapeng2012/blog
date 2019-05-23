@@ -3,46 +3,165 @@
 
 <head>
 	<meta charset="utf-8">
-	<title id="readingX">Chaptor </title>
+	<title id="reading31">Chaptor 31 FCF Valuation</title>
 </head>
 
 <body>
-
-
-	
 	--------------------
-	<h2></h2>
-
-
+	<h2>FCF法</h2>
 	--------------------
-
-
 	<ul>
 		<br />
-		<li></li>
+		<li>FCF适用条件
+			<ul>
+				<br />
+				<li>不支付股利或支付极少</li>
+				<br />
+				<li>FCF与公司盈利能力相关</li>
+				<br />
+				<li>FCF适用于控股股东. 尤其是并购时A对T使用, 因为收购后A成为控股方</li>
+			</ul>
+		</li>
 		<br />
-		<li></li>
+		<li>FCFE or FCFF
+			<ul>
+				<br />
+				<li>尽可能选用<b>FCFE</b></li>
+				<br />
+				<li>资本结构变化大的时候用<b>FCFF</b></li>
+				<br />
+				<li>债务大的时候用<b>FCFF</b></li>
+			</ul>
+		</li>
 		<br />
-		<li></li>
-	</ul>
-
-	<br />
-	
-	--------------------
-	<h2></h2>
-
-	
-
-	--------------------
-
-
-	<ul>
+		<li>PV of FCF
+			<ul>
+				<br />
+				<li>V<sub>firm</sub> = Σ FCFF<sub>t</sub>/(1+WACC)<sup>t</sup><br />
+					其中WACC=D/A×r<sub>d</sub>×(1-T)+E/A×r<sub>e</sub>
+				</li>
+				<br />
+				<li>V<sub>equity</sub> = Σ FCFE<sub>t</sub>/(1+r)<sup>t</sup><br />
+					其中r=股权要求回报率rre
+				</li>
+			</ul>
+		</li>
 		<br />
-		<li></li>
+		<li>计算FCFF
+			<ul>
+				<br />
+				<li>FCFF = NI + NCC(一般用折旧代替) + Int(1-T) - FCInv - WCInv</li>
+				<br />
+				<li>FCFF = CFO + Int(1-T) - FCInv</li>
+				<br />
+				<li>NCC 加回处理
+					<ul>
+						<br />
+						<li>有利的减掉, 有损的加回</li>
+						<br />
+						<li>折旧</li>
+						<br />
+						<li>无形资产的摊销</li>
+						<br />
+						<li>restructing charges</li>
+						<br />
+						<li>G&L</li>
+						<br />
+						<li>长期债的折价或溢价摊销</li>
+					</ul>
+				</li>
+				<br />
+				<li>FCFF = EBIT(1-T) + dep折旧 - FCInv - WCInv</li>
+				<br />
+				<li>FCFF = EBITDA(1-T) + dep折旧•T - FCInv - WCInv</li>
+				<br />
+				<li>FCFF= Cash balance + Debt净还款 [Int(1-T) + New borrowing] + 股权净支付 [现金股利 + 回购]</li>
+				<br />
+				<li></li>
+			</ul>
+		</li>
 		<br />
-		<li></li>
+		<li>计算FCFE
+			<ul>
+				<br />
+				<li>NB
+					<ul>
+						<br />
+						<li>NB = 新增借款 = 新的debt borrowing - debt 偿还</li>
+						<br />
+						<li>NB = △Debt = △Asset × DR(debt ratio)</li>
+						<br />
+						<li></li>
+					</ul>
+				</li>
+				<br />
+				<li>FCFE= FCFF - Inv(1-T) + Net Borrowing, NB</li>
+				<br />
+				<li>FCFE = NI + NCC - FCInv - WCInv + Net Borrowing</li>
+				<br />
+				<li>FCFE = CFO - FCInv + Net Borrowing</li>
+				<br />
+				<li>FCFF= Cash balance + 股权净支付 [现金股利 + 回购]</li>
+				<br />
+				<li>FCFE = NI - (FCInv - Dep) - WCInv + DR × (FCInv - Dep + WCInv)<br />
+					= NI - (1-DR) × (FCInv - Dep + WCInv)</li>
+			</ul>
+		</li>
 		<br />
-		<li></li>
+		<li>敏感性分析
+			<ul>
+				<br />
+				<li>g</li>
+				<br />
+				<li>FCFF<sub>0</sub> / FCFE<sub>0</sub></li>
+			</ul>
+		</li>
+		<br />
+		<li>一个阶段的FCFF和FCFE
+			<ul>
+				<br />
+				<li>V<sub>firm</sub> = FCFF<sub>1</sub>/(WACC-g) = FCFF<sub>0</sub>(1+g)/(WACC-g)</li>
+				<br />
+				<li>V<sub>equity</sub> = FCFE<sub>1</sub>/(r-g) = FCFE<sub>0</sub>(1+g)/(r-g)</li>
+			</ul>
+		</li>
+		<br />
+		<li>两个阶段的FCFF和FCFE
+			<ul>
+				<br />
+				<img src="./pic/pv-fcff-two-stage.png" />
+				<br />
+				<img src="./pic/pv-fcfe-two-stage.png" />
+				<br />
+				<li>两个阶段的FCF模型计算方法
+					<ol>
+						<br />
+						<li>WACC或RRE</li>
+						<br />
+						<li>V<sub>n</sub>
+							<ul>
+								<br />
+								<li>V<sub>n,FCFF</sub>=FCFF<sub>n+1</sub>/(WACC-g)</li>
+								<br />
+								<li>V<sub>n,FCFE</sub>=FCFE<sub>n+1</sub>/(rre-g)</li>
+							</ul>
+						</li>
+						<br />
+						<li>V<sub>0</sub>
+							<ul>
+								<br />
+								<li>V<sub>0,FCFF</sub>=Σ FCFF<sub>t</sub>/(1+WACC)<sup>t</sup></li>
+								<br />
+								<li>V<sub>0,FCFE</sub>=Σ FCFE<sub>t</sub>/(1+rre)<sup>t</sup></li>
+							</ul>
+						</li>
+					</ol>
+				</li>
+			</ul>
+		</li>
+		<br />
+		<li>V<sub>firm</sub> = value of operating assets + value of nonoperating assets value should be added as well
+		</li>
 	</ul>
 	--------------------
 	<br />
