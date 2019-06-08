@@ -3,32 +3,131 @@
 
 <head>
 	<meta charset="utf-8">
-	<title id="readingX">Chaptor </title>
+	<title id="reading39">Chaptor 39 credit default swap</title>
 </head>
 
 <body>
 	--------------------
-	<h2></h2>
+	<h2>信用违约互换 CDS</h2>
 	--------------------
 	<ul>
 		<br />
-		<li></li>
+		<li>交易双方分别叫 credit protection buyer / seller</li>
 		<br />
-		<li></li>
+		<li>类型
+			<ul>
+				<br />
+				<li>single-name CDS, 单一名称CDS, 只对单一债券赔偿
+					<ul>
+						<br />
+						<li>出借方叫 reference entity</li>
+						<br />
+						<li>借入方叫 reference obligation</li>
+					</ul>
+				</li>
+				<br />
+				<li>index CDS, 可以赔偿多个债券
+					<ul>
+						<br />
+						<li>如果相关性高, 赔付就高, 则价格高</li>
+						<br />
+						<li>如果相关性低, 赔付就低, 则价格低</li>
+					</ul>
+				</li>
+				<br />
+				<li>tranche CDS, 分层CDS, 按分层顺序赔付</li>
+			</ul>
+		</li>
 		<br />
-		<li></li>
-	</ul>
-	<br />
-	--------------------
-	<h2></h2>
-	--------------------
-	<ul>
+		<li>一些概念
+			<ul>
+				<br />
+				<li>本金 notional amount</li>
+				<br />
+				<li>CDS利差</li>
+				<br />
+				<li>首付 upfront payment, upfront premium</li>
+				<br />
+				<li>roll, 从off-the-run 换成 on-the-run</li>
+			</ul>
+		</li>
 		<br />
-		<li></li>
+		<li>事件
+			<ul>
+				<br />
+				<li>信用事件
+					<ul>
+						<br />
+						<li>bankruptcy</li>
+						<br />
+						<li>restructuring</li>
+						<br />
+						<li>failure to pay</li>
+					</ul>
+				</li>
+				<br />
+				<li>succession event, 当公司被收购或重组时发生</li>
+			</ul>
+		</li>
 		<br />
-		<li></li>
+		<li>交割方式
+			<ul>
+				<br />
+				<li>physical settlement</li>
+				<br />
+				<li>cash settlement</li>
+				<br />
+				<li>回收率 recovery rate</li>
+				<br />
+				<li>支付率 payout ratio = 1 - RR</li>
+				<br />
+				<li>支付金额 payout amount = 本金 × 支付率</li>
+			</ul>
+		</li>
 		<br />
-		<li></li>
+		<li>valuation
+			<ul>
+				<br />
+				<li>风险相关概念
+					<ul>
+						<br />
+						<li>风险率 hazard rate</li>
+						<br />
+						<li>probability of survival</li>
+						<br />
+						<li>LGD</li>
+						<br />
+						<li>EL</li>
+					</ul>
+				</li>
+				<br />
+				<li>首付 = PV(protection leg 保护支付终端, seller) - PV(premium leg 费用支付终端, buyer)</li>
+				<br />
+				<li>PV(credit spread) = 首付 + PV(fixed coupon)<br />
+					首付 = (credit spread - fixed coupon) × duration<br />
+					credit spread ≈ 首付 / duration + fixed coupon
+				</li>
+				<br />
+				<li>price of CDS = 100 - 首付%</li>
+				<br />
+				<li>△CDS% = 利差变化基点 × duration</li>
+				<br />
+				<li>信用保障买方利润 ≈ 利差变化基点 × duration × 本金</li>
+			</ul>
+		</li>
+		<br />
+		<li>CDS应用
+			<ul>
+				<br />
+				<li>naked CDS 纯CDS</li>
+				<br />
+				<li>多空交易 long / short trade</li>
+				<br />
+				<li>基差交易 basis trade</li>
+				<br />
+				<li>合成CDO synthetic CDO</li>
+			</ul>
+		</li>
 	</ul>
 	--------------------
 	<br />

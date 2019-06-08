@@ -3,20 +3,236 @@
 
 <head>
 	<meta charset="utf-8">
-	<title id="readingX">Chaptor </title>
+	<title id="reading38">Chaptor 38 Credit</title>
 </head>
 
 <body>
 	--------------------
-	<h2></h2>
+	<h2>衡量信用风险</h2>
 	--------------------
 	<ul>
 		<br />
-		<li></li>
+		<li>概念
+			<ul>
+				<br />
+				<li>违约概率 PD, probability of default</li>
+				<br />
+				<li>违约损失 LGD, loss given default</li>
+				<br />
+				<li>回收率 RR, RR = 1 - LGD</li>
+				<br />
+				<li>期望损失 EL = 违约损失 × 违约概率 = LGD × PD</li>
+				<br />
+				<li>PV<sub>EL</sub> = V<sub>risk-free bond</sub> - V<sub>risky bond</sub></li>
+				<br />
+				<li>V<sub>risk-free bond</sub> = 100 / (1 + r<sub>f</sub>)</li>
+				<br />
+				<li>V<sub>risky bond</sub> = 100 / (1 + r<sub>f</sub> + r<sub>risk</sub>)</li>
+				<br />
+				<li>只考虑风险中性的情形下PV<sub>EL</sub> > EL</li>
+			</ul>
+		</li>
 		<br />
-		<li></li>
+		<li>信用模型
+			<ul>
+				<br />
+				<li>传统模型: credit scoring 信用打分
+					<ul>
+						<br />
+						<li>对借款人的信用质量排序的方法, 直接打分不用百分比</li>
+						<br />
+						<li>不反映宏观经济所以不适合大型企业, 更适合私企</li>
+						<br />
+						<li>使用者要求模型稳定, 因而丧失部分准确性</li>
+						<br />
+						<li>不考虑相同借款人的不同借款之间的信用质量差别</li>
+					</ul>
+				</li>
+				<br />
+				<li>传统模型: credit rating 信用评级
+					<ul>
+						<br />
+						<li>适用于大型企业, 政府债券, 资产担保债券ABS</li>
+						<br />
+						<li>指标简单直观, 容易理解, 信息收集成本低</li>
+						<br />
+						<li>降低债市波动</li>
+						<br />
+						<li>不能及时反映市场变化</li>
+						<br />
+						<li>不能随经济周期变化</li>
+						<br />
+						<li>利益冲突的可能</li>
+					</ul>
+				</li>
+				<br />
+				<li>structure models 结构化模型
+					<ul>
+						<br />
+						<li>the option analogy
+							<ul>
+								<br />
+								<li><img src="./pic/time-t-asset-value.png" /><br />
+									where K = strike price</li>
+								<br />
+								<li><img src="./pic/time-t-debt-value.png" /></li>
+								<br />
+								<li>LGD = K-A</li>
+							</ul>
+						</li>
+						<br />
+						<li>valuation
+							<ul>
+								<br />
+								<li>假设
+									<ul>
+										<br />
+										<li>无摩擦市场, 无套利</li>
+										<br />
+										<li>无风险利率长期恒定</li>
+										<br />
+										<li>S<sub>T</sub>满足对数正态分布, 均值μT, 方差σ<sub>2</sub>T</li>
+										<br />
+										<li>公司资产负债结构简单</li>
+									</ul>
+								</li>
+								<br />
+								<li><img src="./pic/time-t-asset-value-structure-model-valuation.png" /></li>
+								<br />
+								<li><img src="./pic/time-t-debt-value-structure-model-valuation.png" /></li>
+								<br />
+								<li>N(d<sub>2</sub>) = 不违约概率 Prob(A<sub>T</sub>≥K)</li>
+							</ul>
+						</li>
+						<br />
+						<li>credit risk measures
+							<ul>
+								<br />
+								<li>不违约概率<br />
+									<img src="./pic/probability-of-defaulting-structure-model-credit-risk.png" /></li>
+								<br />
+								<li>违约损失 EL = KN(–e<sub>2</sub>) – A<sub>t</sub>e<sup>u(T–t)</sup>N(–e<sub>1</sub>)</li>
+								<br />
+								<li>PV(EL)<br />
+									<img src="./pic/value-of-default-free-zero-coupon-bond.png" /></li>
+							</ul>
+						</li>
+						<br />
+						<li>优点
+							<ul>
+								<br />
+								<li>用期权类比方式理解违约概率和LGD</li>
+								<br />
+								<li>用当前市场价格中隐含的参数, 不用历史参数</li>
+							</ul>
+						</li>
+						<br />
+						<li>缺点
+							<ul>
+								<br />
+								<li>BS表模型假设不准确</li>
+								<br />
+								<li>资产交易不活跃时不准确</li>
+								<br />
+								<li>不考虑经济周期</li>
+							</ul>
+						</li>
+					</ul>
+				</li>
+				<br />
+				<li>reduced form models 简化模型
+					<ul>
+						<br />
+						<li>基本假设
+							<ul>
+								<br />
+								<li>公司零息债在无摩擦无套利市场交易</li>
+								<br />
+								<li>无风险利率和经济状况随机</li>
+								<br />
+								<li>违约率和回收率取决于经济周期</li>
+							</ul>
+						</li>
+						<br />
+						<li>零息债价值<br />
+							<img src="./pic/zero-coupon-value-reduced-form-model.png" />
+						</li>
+						<br />
+						<li>违约概率 prob(τ ≤ T) = 1 – e<sup>–λ(T–t)</sup></li>
+						<br />
+						<li>EL = K [1 – e<sup>–λγ(T–t)</sup>]</li>
+						<br />
+						<li>PV(LGD) = K P(t,T) - D(t,T) = K P(t,T) [1 – e<sup>–λγ(T–t)</sup>]</li>
+						<br />
+						<li>优点
+							<ul>
+								<br />
+								<li>可用历史数据</li>
+								<br />
+								<li>信用风险随经济周期变化</li>
+								<br />
+								<li>不对BS表做假设</li>
+							</ul>
+						</li>
+						<br />
+						<li>缺点
+							<ul>
+								<br />
+								<li>历史数据不反映未来</li>
+							</ul>
+						</li>
+					</ul>
+				</li>
+			</ul>
+		</li>
 		<br />
-		<li></li>
+		<li>信用利差的term structure
+			<ul>
+				<br />
+				<li>无违约无摩擦无套利下的coupon bond价格<br />
+					<img src="./pic/default-free-coupon-bond-price.png" />
+				</li>
+				<br />
+				<li>有风险的coupon bond 价格
+					<br />
+					<img src="./pic/risky-coupon-bond-price.png" />
+				</li>
+				<br />
+				<li>D(t,T) = Ke<sup>−y<sub>D</sub>(t,T)(T −t)</sup><br />
+					其中y<sub>D</sub>(t,T) = 有风险yield</li>
+				<br />
+				<li>P(t,T) = e<sup>−y<sub>P</sub>(t,T)(T −t)</sup><br />
+					其中y<sub>P</sub>(t,T) = 无风险yield</li>
+				<br />
+				<li>PV(EL)<br />
+					= PV<sub>risky</sub> - PV<sub>risk-free</sub><br />
+					= y<sub>D</sub>(t,T) - y<sub>P</sub>(t,T)<br />
+					= λγ
+				</li>
+			</ul>
+		</li>
+		<br />
+		<li>ABS
+			<ul>
+				<br />
+				<li>ABS 不用分析发债人, 仅分析抵押资产即可</li>
+				<br />
+				<li>可用两种模型, 但是要考虑还款顺序</li>
+				<br />
+				<li>不用违约概率, 可以用损失概率, 因为ABS不会违约, 但是抵押资产本身可能资不抵债导致违约损失</li>
+			</ul>
+		</li>
+		<br />
+		<li>
+			<ul>
+				<br />
+				<li></li>
+				<br />
+				<li></li>
+				<br />
+				<li></li>
+			</ul>
+		</li>
 	</ul>
 	<br />
 	--------------------
@@ -24,11 +240,38 @@
 	--------------------
 	<ul>
 		<br />
-		<li></li>
+		<li>
+			<ul>
+				<br />
+				<li></li>
+				<br />
+				<li></li>
+				<br />
+				<li></li>
+			</ul>
+		</li>
 		<br />
-		<li></li>
+		<li>
+			<ul>
+				<br />
+				<li></li>
+				<br />
+				<li></li>
+				<br />
+				<li></li>
+			</ul>
+		</li>
 		<br />
-		<li></li>
+		<li>
+			<ul>
+				<br />
+				<li></li>
+				<br />
+				<li></li>
+				<br />
+				<li></li>
+			</ul>
+		</li>
 	</ul>
 	--------------------
 	<br />

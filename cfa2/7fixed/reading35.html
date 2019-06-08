@@ -3,96 +3,229 @@
 
 <head>
 	<meta charset="utf-8">
-	<title id="readingX">Chaptor </title>
+	<title id="reading35">Chaptor 35 The Term Structure and Interest Rate Dynamics</title>
 </head>
 
 <body>
 	--------------------
-	<h2></h2>
+	<h2>Rates</h2>
 	--------------------
 	<ul>
 		<br />
-		<li>
+		<li>Spot rates P(T) = 1 / [1+r(T)]<sup>T</sup></li>
+		<br />
+		<li>forward rates
 			<ul>
 				<br />
-				<li></li>
+				<li>P(T<sup>*</sup>+T) = P(T<sup>*</sup>) × F(T<sup>*</sup>,T)</li>
 				<br />
-				<li></li>
+				<li>F(T<sup>*</sup>,T) = P(T<sup>*</sup>+T) / P(T<sup>*</sup>)</li>
 				<br />
-				<li></li>
+				<li>F(T<sup>*</sup>,T) = 1 / [1+f(T<sup>*</sup>,T)]<sup>T</sup></li>
 				<br />
-				<li></li>
+				<li>[1+r(T<sup>*</sup>+T)]<sup>T<sup>*</sup>+T</sup> = [1+r(T<sup>*</sup>)]<sup>T<sup>*</sup></sup> ×
+					[1+f(T<sup>*</sup>,T)]<sup>T</sup></li>
+				<br />
+				<li>T期利率=即期到T-1期的一期利率的几何平均-1<br />
+					r(T)={[1+r(1)][1+f(1,1)][1+f(2,1)]...[1+f(T-1,1)]}<sup>1/T</sup>-1</li>
+				<br />
+				<li>T期利率在T<sup>*</sup>后的远期 = (T<sup>*</sup>+T期本息和/T<sup>*</sup>期本息和) 做T期几何平均 - 1<br />
+					<img src="./pic/forward-rate-model.png" />
+				</li>
+				<br />
+				<li>当T<sup>*</sup>=1 时, 1+r(1)=[1+r(T+1)]<sup>T+1</sup>/[1+f(1,T)]<sup>T</sup></li>
 			</ul>
 		</li>
 		<br />
-		<li>
+		<li>riding the yield curve, or rolling down the yield curve
 			<ul>
 				<br />
-				<li></li>
-				<br />
-				<li></li>
-				<br />
-				<li></li>
-				<br />
-				<li></li>
+				<li>购买比投资期更长的债券, 来获得更高收益率</li>
 			</ul>
 		</li>
 		<br />
-		<li>
+		<li>Swap rate
 			<ul>
 				<br />
-				<li></li>
+				<li>Swap高流动的原因
+					<ul>
+						<br />
+						<li>仅有对手方, 便于沟通和自定义合约</li>
+						<br />
+						<li>是最有效的对冲利率风险的工具</li>
+					</ul>
+				</li>
 				<br />
-				<li></li>
+				<li>swap利率
+					<ul>
+						<br />
+						<li>各期swap利率折现之和等于1, (末期时s(T)=1)<br />
+							<img src="./pic/swap-rate.png" /></li>
+					</ul>
+				</li>
 				<br />
-				<li></li>
+				<li>Swap 利差
+					<ul>
+						<br />
+						<li>swap spread = swap rate - 国债利率(on the run)</li>
+						<br />
+						<li>利差来源
+							<ul>
+								<br />
+								<li>swap是OTC产品, 参与者为机构, 相比国债有背书方的信用风险补偿</li>
+								<br />
+								<li>流动性小于国债</li>
+								<br />
+								<li>套利机会存在</li>
+							</ul>
+						</li>
+						<br />
+						<li>Z利差
+							<ul>
+								<br />
+								<li>公司债收益率-国债即期收益率</li>
+								<br />
+								<li>反映信用风险和流动性更加准确</li>
+								<br />
+								<li>Z利差不适用于含权债券</li>
+							</ul>
+						</li>
+						<br />
+						<li>I利差
+							<ul>
+								<br />
+								<li>公司债利率 - 互换利率</li>
+							</ul>
+						</li>
+						<br />
+						<li>TED利差
+							<ul>
+								<br />
+								<li>LIBOR(3个月) - T-bill(3个月)</li>
+								<br />
+								<li>两者交易量最大, 流动性最好, 没有流动性风险差异, 仅有信用风险差异</li>
+							</ul>
+						</li>
+						<br />
+						<li>Libor-OIS利差(隔夜互换)
+							<ul>
+								<br />
+								<li>低利差说明资金充足</li>
+								<br />
+								<li>高利差说明资金紧张</li>
+							</ul>
+						</li>
+					</ul>
+				</li>
+			</ul>
+		</li>
+		<br />
+		<li>局部期望理论
+			<ul>
 				<br />
-				<li></li>
+				<li>认为风险中性仅在短期成立, 长期都会引入风险溢价</li>
+				<br />
+				<li>纯期望, 无偏期望 : 将长期利率看作一系列短期利率的几何平均</li>
+				<br />
+				<li>流动性偏好理论 : 认为远期利率对未来短期利率估计有偏, 偏差为流动性补偿LPR liquidity premiums</li>
+				<br />
+				<li>市场分割理论 segmented market: 认为利率由各个市场的供求关系决定, 与未来短期利率预期的流动性补偿无关, 即各期限的收益率独立, 各期市场分割</li>
+				<br />
+				<li>偏好习惯理论 : 认为远期利率等于预期未来即期收益率加上一个风险补偿, 但这个风险补偿与期限不直接相关</li>
+			</ul>
+		</li>
+		<br />
+		<li>现代期限结构模型
+			<ul>
+				<br />
+				<li>均衡期限结构模型
+					<ul>
+						<br />
+						<li>单因素或多因素模型, 有因素行为的假设, 比无套利更精确</li>
+						<br />
+						<li>Cox-Ingersoll-Ross model
+							<ul>
+								<br />
+								<li><img src="./pic/swap-rate.png" /><br />
+									dr=r的变动, dt=t的变动, dz=随机变量的变动<br />
+									a=均值复归速度, b=短期利率均值, r=上一期利率, σ=波动
+								</li>
+								<br />
+								<li>前一项为复归项, 后一项为扰动项</li>
+							</ul>
+						</li>
+						<br />
+						<li>Vasicek model
+							<ul>
+								<br />
+								<li>dr = a(b-r)dt + σdz</li>
+								<br />
+								<li>扰动项不受r的影响</li>
+								<br />
+								<li></li>
+								<br />
+								<li></li>
+							</ul>
+						</li>
+					</ul>
+				</li>
+				<br />
+				<li>无套利模型: Ho-Lee 模型
+					<ul>
+						<br />
+						<li>dr<sub>t</sub> = θ<sub>t</sub>dt + σdz<sub>t</sub></li>
+						<br />
+						<li>θ<sub>t</sub>dt: 时间相关趋势项, 对市场利率求导得出</li>
+						<br />
+						<li>用于零息债券定价估值和估计利率曲线走势</li>
+					</ul>
+				</li>
 			</ul>
 		</li>
 	</ul>
 	<br />
 	--------------------
-	<h2></h2>
+	<h2>收益率曲线因素模型</h2>
 	--------------------
 	<ul>
 		<br />
-		<li>
+		<li>shaping risk, 非平行移动带来的债券组合收益率变化
 			<ul>
 				<br />
-				<li></li>
+				<li>level, 整体位移</li>
 				<br />
-				<li></li>
+				<li>steepness, 倾斜度变化, 长期和短期变化不一样</li>
 				<br />
-				<li></li>
-				<br />
-				<li></li>
+				<li>curvature, 曲度变化, 中期和长短期变化不一样</li>
 			</ul>
 		</li>
 		<br />
-		<li>
-			<ul>
-				<br />
-				<li></li>
-				<br />
-				<li></li>
-				<br />
-				<li></li>
-				<br />
-				<li></li>
-			</ul>
+		<li>成熟期结构的收益曲线波动<br />
+			<img src="./pic/yield-curve-volatilities-maturity-structure.png" />
 		</li>
 		<br />
-		<li>
+		<li>管理收益曲线风险
 			<ul>
 				<br />
-				<li></li>
+				<li>指标管理
+					<ul>
+						<br />
+						<li>有效久期 effective duration, 各期权重相同<br />
+							<img src="./pic/effective-duration.png" />
+						</li>
+						<br />
+						<li>关键利率久期 key rate duration<br />
+							<img src="./pic/key-rate-duration.png" />
+						</li>
+						<br />
+						<li>如何得到D<sub>f</sub>, 假设当仅有因素f变化△f时, D<sub>f</sub>=△P%/△f</li>
+					</ul>
+				</li>
 				<br />
-				<li></li>
-				<br />
-				<li></li>
-				<br />
-				<li></li>
+				<li>对三种变化引发的风险进行管理<br />
+					<img src="./pic/yield-curve-movement-duration.png" /><br />
+					其中D<sub>l</sub>=level, D<sub>s</sub>=steepness, D<sub>c</sub>=curvature
+				</li>
 			</ul>
 		</li>
 	</ul>

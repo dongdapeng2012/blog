@@ -3,32 +3,139 @@
 
 <head>
 	<meta charset="utf-8">
-	<title id="readingX">Chaptor </title>
+	<title id="reading37">Chaptor 37 含权债券</title>
 </head>
 
 <body>
 	--------------------
-	<h2></h2>
+	<h2>含权债券</h2>
 	--------------------
 	<ul>
 		<br />
-		<li></li>
+		<li>options in bonds
+			<ul>
+				<br />
+				<li>straight bond</li>
+				<br />
+				<li>callalbe, V<sub>c</sub> = V<sub>straight</sub> - V<sub>call option</sub></li>
+				<br />
+				<li>putable, V<sub>p</sub> = V<sub>straight</sub> + V<sub>put option</sub></li>
+				<br />
+				<li>extendible bond 可扩展权, 当put权债券到期时, 可以继续保留几年</li>
+				<br />
+				<li>convertible</li>
+				<br />
+				<li>estate put, 又叫 survivor's option 债权人死后即可回售</li>
+				<br />
+				<li>sinking fund bond, 又叫 sinker, 偿债基金债券, 定期预留一些资金用于归还本金</li>
+			</ul>
+		</li>
 		<br />
-		<li></li>
+		<li>无违约 callable / putable<br />
+			<img src="./pic/up-state-rate.png" /><br />
+			callalbe 去掉V大于100的路径<br />
+			<img src="./pic/callalbe-remove-path-v-lager-than-100.png" /><br />
+			putable 去掉V小于100的路径<br />
+			<img src="./pic/putable-remove-path-v-lager-than-100.png" />
+		</li>
 		<br />
-		<li></li>
-	</ul>
-	<br />
-	--------------------
-	<h2></h2>
-	--------------------
-	<ul>
+		<li>有违约风险的 callable / putable
+			<ul>
+				<br />
+				<li>OAS option-adjusted spread
+					<ul>
+						<br />
+						<li>Z-spread, zero-volatility spread, z-spread=债券利率-国债利率</li>
+						<br />
+						<li>OAS = z-spread剔除权的影响后的spread</li>
+						<br />
+						<li>如果OAS小于0, 债券被高估, 因为利差小, 投资人的获利更少</li>
+						<br />
+						<li>如果OAS大于0, 应比较实际OAS和要求OAS, 如果实际OAS相对较小, 债券被高估</li>
+						<br />
+						<li>以发行人债券为基准时, 要求OAS=0</li>
+					</ul>
+				</li>
+			</ul>
+		</li>
 		<br />
-		<li></li>
+		<li>久期
+			<ul>
+				<br />
+				<li>有效久期
+					<ul>
+						<br />
+						<img src="./pic/effective-duration-formula.png" />
+						<br />
+						<li>callable 和 putable的有效久期不会超过straight bond</li>
+						<br />
+						<li>零息债, 有效久期=修正久期≈麦考利久期=债券到期</li>
+						<br />
+						<li>固定利率, ED=MD≈麦考利久期&lt;债券到期</li>
+						<br />
+						<li>callable/putable, ED ≤ MD(straight)</li>
+						<br />
+						<li>callable, 单边上久期 > 单边下久期</li>
+						<br />
+						<li>putable, 单边下久期 > 单边上久期</li>
+						<br />
+						<li>浮动利率债券, ED≈下一个重置期</li>
+					</ul>
+				</li>
+			</ul>
+		</li>
 		<br />
-		<li></li>
+		<li>有效凸度<br />
+			<img src="./pic/effective-convexity.png" />
+		</li>
 		<br />
-		<li></li>
+		<li>浮动利率债券
+			<ul>
+				<br />
+				<li>capped floater, V<sub>cap</sub> = V<sub>straight</sub> - V<sub>embedded cap</sub></li>
+				<br />
+				<li>floored floater, V<sub>floor</sub> = V<sub>straight</sub> + V<sub>embedded floor</sub></li>
+				<br />
+				<li></li>
+			</ul>
+		</li>
+		<br />
+		<li>可转债
+			<ul>
+				<br />
+				<li>conversion value = underlying share price × conversion ratio</li>
+				<br />
+				<li>市场转换价 = 可转债价格 / 转换率</li>
+				<br />
+				<li>市场转换溢价 = 市场转换价 - 股价</li>
+				<br />
+				<li>市场转换溢价率 = 市场转换溢价 / 股价</li>
+				<br />
+				<li>V<sub>convertible option</sub> = + value of call option on the issuer's stock</li>
+				<br />
+				<li>风险收益特征
+					<ul>
+						<br />
+						<li>低股价时, 如同普通债券, bond equivalent, busted convertible</li>
+						<br />
+						<li>高股价时, 如同股票, stock equivalent</li>
+						<br />
+						<li>其他情形hybrid</li>
+					</ul>
+				</li>
+			</ul>
+		</li>
+		<br />
+		<li>债券分析注意事项
+			<ul>
+				<br />
+				<li>check put-call parity holds</li>
+				<br />
+				<li>check value of option-free</li>
+				<br />
+				<li>check volatility term structure slopes downward</li>
+			</ul>
+		</li>
 	</ul>
 	--------------------
 	<br />

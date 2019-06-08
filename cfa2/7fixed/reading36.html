@@ -1,35 +1,75 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 	<meta charset="utf-8">
-	<title id="readingX">Chaptor </title>
+	<title id="reading36">Chaptor 36 无套利定价框架</title>
 </head>
+
 <body>
 	--------------------
-	<h2></h2>
+	<h2>无套利定价框架</h2>
 	--------------------
 	<ul>
 		<br />
-		<li></li>
+		<li>金融资产估价的基本步骤
+			<ol>
+				<br />
+				<li>估计未来CF</li>
+				<br />
+				<li>找到合适的折现率, 或未来各个时间点的折现率</li>
+				<br />
+				<li>计算PV</li>
+			</ol>
+		</li>
 		<br />
-		<li></li>
+		<li>一价率与套利机会
+			<ul>
+				<br />
+				<li>value additivity, 证券价格小于组合价格, 买入证券, 卖出组合</li>
+				<br />
+				<li>dominance, 证券价格大于组合时, 买入组合, 卖出证券</li>
+				<br />
+				<li>stripping, 将一个债券视为一系列零息债</li>
+				<br />
+				<li>reconsistitution, 将一系列零息债视为一个债券</li>
+			</ul>
+		</li>
 		<br />
-		<li></li>
-	</ul>
-	<br />
-	--------------------
-	<h2></h2>
-	--------------------
-	<ul>
+		<li>利率二叉树
+			<ul>
+				<br />
+				<li>i<sub>i,H</sub>=i<sub>i,L</sub>e<sup>2σ</sup></li>
+				<br />
+				<li>有Coupon的情况 V=Σ(V<sub>n,H,L</sub>)+C/(1+i)<sup>n</sup></li>
+				<br />
+				<li>无权债券用利率树估值, 可以用每个节点计算出来的结果反推PV</li>
+				<br />
+				<li>pathwise valuation
+					<ol>
+						<br />
+						<li>找到所有路径</li>
+						<br />
+						<li>以每条路径折现得到V<sub>t=0,path=i</sub></li>
+						<br />
+						<li>假设所有路径等权重, 求出所有V<sub>0</sub>的均值作为PV</li>
+					</ol>
+				</li>
+			</ul>
+		</li>
 		<br />
-		<li></li>
-		<br />
-		<li></li>
-		<br />
-		<li></li>
+		<li>蒙特卡罗方法
+			<ul>
+				<br />
+				<li>如果有不等权的路径(路径依赖), 需要做蒙特卡洛模拟</li>
+				<br />
+				<li>随机产生大量路径, 来获得路径选择分布, 从而获得权重</li>
+			</ul>
+		</li>
 	</ul>
 	--------------------
 	<br />
 	<a href="./reading37.html">Next Chaptor</a>
 </body>
+
 </html>
