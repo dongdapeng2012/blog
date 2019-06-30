@@ -3,45 +3,88 @@
 
 <head>
 	<meta charset="utf-8">
-	<title id="readingX">Chaptor </title>
+	<title id="reading40">Chaptor 40 远期合约定价</title>
 </head>
 
 <body>
 	--------------------
-	<h2></h2>
+	<h2>远期合约定价</h2>
 	--------------------
 	<ul>
 		<br />
-		<li>
+		<li>概念
 			<ul>
 				<br />
-				<li></li>
+				<li>convergence, 一个远期合约在T时刻订立, 在T时刻交付, 等价于T时刻的即时交易</li>
 				<br />
-				<li></li>
-				<br />
-				<li></li>
-				<br />
-				<li></li>
+				<li>at market</li>
 			</ul>
 		</li>
 		<br />
-		<li>
+		<li>无CF的套利模型
 			<ul>
 				<br />
-				<li></li>
+				<li>套利规则
+					<ul>
+						<br />
+						<li>不用自己的钱</li>
+						<br />
+						<li>不接受价格风险</li>
+					</ul>
+				</li>
 				<br />
-				<li></li>
+				<li>正向套利, 买入资产同时卖出远期, 收益 = FP - S<sub>0</sub>(1+R<sub>f</sub>)<sup>T</sup></li>
 				<br />
-				<li></li>
+				<li>反向套利, 卖出资产同时买入远期, 收益 = S<sub>0</sub>(1+R<sub>f</sub>)<sup>T</sup> - FP</li>
 				<br />
-				<li></li>
+				<li>远期合约的现值 V<sub>t</sub>(T) = PV<sub>t,T</sub>[F<sub>t</sub>(T) - F<sub>0</sub>(T)]</li>
 			</ul>
 		</li>
 		<br />
-		<li>
+		<li>有CF的套利模型
 			<ul>
 				<br />
-				<li></li>
+				<li>FV - 有CF的套利模型<br />
+					<img src="./pic/future-value-carry-arbitrage-model-with-cash-flow.png" /><br />
+					其中 γ = carry benefit, 即CF<br />
+					θ = 标的成本</li>
+				<br />
+				<li>在连续复利下的 FV - 有CF的套利模型 <br />
+					<img src="./pic/future-value-with-e-carry-arbitrage-model-with-cash-flow.png" /><br />
+				</li>
+			</ul>
+		</li>
+		<br />
+		<li>远期利率协议 FRA
+			<ul>
+				<br />
+				<li>receive floating 交割金额 = 名义本金 × (Libor - FRA) × T / (1 + Discount × t)</li>
+				<br />
+				<li>receive fixed 交割金额 = 名义本金 × (FRA - Libor) × T / (1 + Discount × t)</li>
+				<br />
+				<li>settled in arrears, 投资h+m天, 首期借入h天, 在h天再借入m天, 在h+m天平仓
+				</li>
+				<br />
+				<li>逾期交割的FRA(0,h,m)<br />
+					<img src="./pic/forward-rate-agreement.png" />
+				</li>
+				<br />
+				<li>V<sub>g</sub>(0,h,m)<br />
+					<img src="./pic/forward-rate-agreement-value-at-g.png" />
+				</li>
+				<br />
+				<li>在g天的逾期交割的FRA(g,h-g,m)<br />
+					<img src="./pic/forward-rate-agreement-at-g.png" />
+				</li>
+			</ul>
+		</li>
+		<br />
+		<li>Fixed income formward and future contracts
+			<ul>
+				<br />
+				<li>Accrual Interest, AI <br />
+					= Coupon × Accrual period<br />
+					= (accrual days / total days) × ( Coupon / number of coupon payment )</li>
 				<br />
 				<li></li>
 				<br />
