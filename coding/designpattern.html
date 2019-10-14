@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>设计模式整理--Java版</title>
+    </head>
+    
+<body>
+    <div style="text-indent: 2em;" class="cye-lm-tag">
+        <div style="text-indent: 2em;"><b><font style="font-size: 18px;">设计模式整理--Java版</font></b></div>
+        <div style="text-indent: 2em;" class="cye-lm-tag"><b><br></b></div>
+        作为软件开发从业者, 设计模式是提升自我绕不开的坎, 也是面试必不可少的环节.
+        我曾多次翻书看帖却也没有真正理解甚至仅仅死记硬背下来什么能够跟同事或者面试时吹吹牛逼的内容.&nbsp;<wbr>
+        <div><br></div>
+        <div>重新整理设计模式的想法源于&lt;敏捷软件开发原则、模式与实践&gt;一书, 其中有很多对于设计模式的独特视角,
+        并且比我之前看过的大部分资料都更易理解.&nbsp;<wbr></div>
+        <div><br></div>
+        <div style="text-align: right;">-- 2019年10月7日</div>
+        <div><br></div>
+        <div class="cye-lm-tag">
+        <div><span style="text-indent: 2em;" class="cye-lm-tag">本文大部分素材来源于</span><a href="http://https://www.runoob.com/design-pattern/design-pattern-tutorial.html" target="_blank">菜鸟教程的设计模式部分</a><span style="text-indent: 2em;" class="cye-lm-tag">.
+        并基于Java整理.</span></div>
+        <div><span style="text-indent: 2em;" class="cye-lm-tag"><br></span></div>
+        <div class="cye-lm-tag"><span style="text-indent: 2em;" class="cye-lm-tag">引用请注明原文地址&nbsp;<wbr></span><span style="text-indent: 2em;" class="cye-lm-tag">http://blog.sina.com.cn/s/blog_af719a270102ylfh.html&nbsp;<wbr></span></div>
+        </div>
+        <div><br></div>
+        <div>本文约定如无特殊标注,&nbsp;<wbr></div>
+        <div>C表示调用者Caller</div>
+        <div>A表示被调用的抽象Abstract(抽象类或接口)</div>
+        <div>M表示用于解耦的中间类,&nbsp;<wbr><span style="text-indent: 2em;" class="cye-lm-tag">AM表示M的抽象</span></div>
+        <div>S表示实现类,&nbsp;<wbr><span style="text-indent: 2em;" class="cye-lm-tag">AS表示S的抽象,</span> <span style="text-indent: 2em;" class="cye-lm-tag">E表示实体, F表示方法</span></div>
+        <div>m或n代表中间类和实现类的多态或者实例个数</div>
+        <div><br></div>
+        <div><br></div>
+        <div>
+        <div style="text-align: left;"><b style=""><font style="font-size: 20px;">创建型模式</font></b></div>
+        -- 创建型模式关注类之间的解耦和多态关系<br>
+        <ul>
+        <li>工厂模式</li>
+        <li>抽象工厂模式</li>
+        <li>建造者模式</li>
+        <li>单例模式</li>
+        <li>原型模式<br></li>
+        </ul>
+        </div>
+        <div><br></div>
+        <div>
+        <ul>
+        <li><b style="text-indent: 2em;"><font style="font-size: 18px;">解耦C和S</font></b></li>
+        </ul>
+        </div>
+        <div><br></div>
+        <div>
+        <div style="text-align: left;"><b><font style="font-size: 16px;">工厂模式 Factory</font></b></div>
+        <div><b><br></b></div>
+        <div>工厂模式适用于调用者C不依赖具体底层实现s, 也就是说C只需要引用实现类的抽象A就足够满足需求, 从而将C和S解耦.
+        因为C不依赖于S, C就不能new S(), 那么问题来了, 是什么来new S()的呢?</div>
+        <div><br></div>
+        <div>基于这个原因就引入了一个工厂类M来显式地new S().
+        C仅仅在存在A有多个不同实现类S的情况下提供一个形参(教材上通常喜欢用字符串)来告知工厂类M要用哪一个实现S.</div>
+        <div><br></div>
+        <div>由此, 工厂模式的特征是<font color="#ED1C24">而调用者C与实现S完全解耦, 但未与工厂解耦,
+        引入工厂类就是解耦实现类S的代价, 工厂本身依赖A但是需要指定new S(), 半耦合,
+        所有S有共享的方法签名</font>.</div>
+        <div><br></div>
+        <div>其结构是<font color="#ED1C24">调用者C-(调用工厂方法并带有形参)-工厂类M-(通过分支if/switch根据形参执行不同的 A a = new
+        S()</font><span style="color: rgb(255, 0, 0);" class="cye-lm-tag">,
+        半耦合</span><font color="#ED1C24">)-抽象A--具体实现S</font>.</div>
+        <div><br></div>
+        <div><br></div>
+        <div><b style="font-size: 16px;">抽象工厂&nbsp;<wbr>Abstract
+        Factory</b></div>
+        <div><font style="font-size: 14px;"><br></font></div>
+        <div><font style="font-size: 14px;">抽象工厂模式一般来说就是对工厂的工厂模式. 之所以叫抽象工厂,
+        是因为对工厂的解耦.</font></div>
+        <div><font style="font-size: 14px;"><br></font></div>
+        <div><font style="font-size: 14px;">如果调用者C同时需要多个不同的抽象类A1/A2...,
+        这样就需要创建多个工厂Fct1/Fct2..., 如果调用者C在选择工厂的时候也不必new Fct()的时候,
+        可以对工厂类本身再次使用工厂模式就是工厂的工厂FF. 注意FF仅决定new哪一个工厂类Fct, 而最终使用哪一个实现S,
+        仍然是工厂类Fct的工作.</font></div>
+        <div><font style="font-size: 14px;"><br></font></div>
+        <div><font style="font-size: 14px;">其特征是<font color="#FF0000">调用者不但对具体实现S解耦, 并且对工厂解耦,
+        作为代价引入了工厂的工厂类FF</font>.</font></div>
+        <div><br></div>
+        <div><font style="font-size: 14px;">其结构是<font color="#FF0000">调用者C--工厂的工厂类FF(在这里AbsFct absFct = new
+        Fct()</font></font><span style="color: rgb(255, 0, 0);" class="cye-lm-tag">,
+        半耦合</span><font color="#FF0000">)--抽象工厂AbsFct--工厂类Fct(在这里A a = new
+        S()</font><span style="color: rgb(255, 0, 0);" class="cye-lm-tag">,
+        半耦合</span><span style="color: rgb(255, 0, 0);" class="cye-lm-tag">)--抽象AS--具体实现Smn</span></div>
+        <div><br></div>
+        <div>在结构上可以这样理解抽象工厂模式是工厂的工厂:</div>
+        <div>
+        <ol>
+        <li>调用者C--工厂F的工厂--工厂F的抽象--工厂Fm</li>
+        <li>调用者C-实现S的工厂--实现S的抽象--实现Sn</li>
+        </ol>
+        </div>
+        <div>两部分结构是一样的. 注意, 每引入一级工厂(或者对直接调用的解耦)就需要另外引入一级抽象和工厂类.
+        这种复杂性的增加就是解耦的代价.</div>
+        <div><br></div>
+        <div><br></div>
+        <div><b style="font-size: 16px; text-indent: 2em;">建造者模式
+        Builder</b></div>
+        <div><font style="font-size: 14px;"><br></font></div>
+        <div><font style="font-size: 14px;">建造者模式与工厂模式很像,
+        但是业务要求建造类B必须完整指定每一个建造方法的一组有序的实现步骤. 相比工厂模式而言,
+        调用者C通过显式地指定建造方法实现了对实现的解耦, 但是却提高了对建造者的耦合. 工厂模式仅依赖一个工厂方法,
+        建造者模式中需要依赖多个建造方法.</font></div>
+        <div><font style="font-size: 14px;"><br></font></div>
+        <div>简单而言, 建造者模式相比工厂模式和抽象工厂模式而言, 牺牲了部分解耦性, 换来了对不同建造方法的选择权.</div>
+        <div><br></div>
+        <div>建造者模式的特征是<font color="#FF0000">调用者C对实现S解耦,
+        调用者C对建造者M完全耦合</font>.</div>
+        <div><br></div>
+        <div>结构是<font color="#FF0000">调用者C(直接调用不同的建造方法)--建造者M--实现Sn</font></div>
+        <div><br></div>
+        <div>
+        <div>
+        <ul>
+        <li><b style="text-indent: 2em;"><font style="font-size: 18px;">全局单态</font></b></li>
+        </ul>
+        </div>
+        <div><br></div>
+        <div>
+        <div><b><font style="font-size: 16px;">单例模式
+        Singleton</font></b></div>
+        <div><br></div>
+        <div>单例模式仅用于全局仅需要创建一次的情况, 比如整个应用的实例.</div>
+        </div>
+        <div><br></div>
+        <div>
+        <ul>
+        <li>饿汉式</li>
+        </ul>
+        </div>
+        <div>
+        <div>public class Singleton
+        {&nbsp;<wbr>&nbsp;<wbr></div>
+        <div>&nbsp;<wbr> &nbsp;<wbr> private static Singleton
+        instance = new
+        Singleton();&nbsp;<wbr>&nbsp;<wbr></div>
+        <div>&nbsp;<wbr> &nbsp;<wbr> private Singleton
+        (){}&nbsp;<wbr>&nbsp;<wbr></div>
+        <div>&nbsp;<wbr> &nbsp;<wbr> public static Singleton
+        getInstance() {&nbsp;<wbr>&nbsp;<wbr></div>
+        <div>&nbsp;<wbr> &nbsp;<wbr> return
+        instance;&nbsp;<wbr>&nbsp;<wbr></div>
+        <div>&nbsp;<wbr> &nbsp;<wbr>
+        }&nbsp;<wbr>&nbsp;<wbr></div>
+        <div>}</div>
+        <div><br></div>
+        <div>
+        <ul>
+        <li>内部静态类形式</li>
+        </ul>
+        </div>
+        <div>public class Singleton
+        {&nbsp;<wbr>&nbsp;<wbr></div>
+        <div>&nbsp;<wbr> &nbsp;<wbr> private static class
+        SingletonHolder {&nbsp;<wbr>&nbsp;<wbr></div>
+        <div>&nbsp;<wbr> &nbsp;<wbr> private static final
+        Singleton INSTANCE = new
+        Singleton();&nbsp;<wbr>&nbsp;<wbr></div>
+        <div>&nbsp;<wbr> &nbsp;<wbr>
+        }&nbsp;<wbr>&nbsp;<wbr></div>
+        <div>&nbsp;<wbr> &nbsp;<wbr> private Singleton
+        (){}&nbsp;<wbr>&nbsp;<wbr></div>
+        <div>&nbsp;<wbr> &nbsp;<wbr> public static final
+        Singleton getInstance() {&nbsp;<wbr>&nbsp;<wbr></div>
+        <div>&nbsp;<wbr> &nbsp;<wbr> return
+        SingletonHolder.INSTANCE;&nbsp;<wbr>&nbsp;<wbr></div>
+        <div>&nbsp;<wbr> &nbsp;<wbr>
+        }&nbsp;<wbr>&nbsp;<wbr></div>
+        <div>}</div>
+        </div>
+        <div><br></div>
+        <div><br></div>
+        <div>
+        <div><font style="font-size: 16px;"><b>原型模式
+        Prototype</b></font></div>
+        <div><br></div>
+        </div>
+        </div>
+        <div>原型模式用于需要多次重复创建相同实例的情况.</div>
+        <div><br></div>
+        <div>其结构是调用者C--实例En(克隆自E)--静态实例E</div>
+        <div><br></div>
+        <div><br></div>
+        <div><b><font style="font-size: 18px;">小结</font></b></div>
+        <div><br></div>
+        <div><span style="text-indent: 2em;" class="cye-lm-tag">-- 解耦C和S</span></div>
+        <div><span style="text-indent: 2em;" class="cye-lm-tag"><br></span></div>
+        <div>工厂:&nbsp;<wbr><font color="#ED1C24">调用者C--工厂类M(new
+        S())-</font><font color="#ED1C24">-抽象A--具体实现Sn</font></div>
+        <div><font color="#ED1C24"><br></font></div>
+        <div>抽象工厂:&nbsp;<wbr><font color="#FF0000">C--工厂的工厂类M*</font><font color="#FF0000">--抽象工厂AM--工厂类Mm</font><span style="color: rgb(255, 0, 0);" class="cye-lm-tag">--抽象AS--具体实现Smn</span></div>
+        <div>建造者:&nbsp;<wbr><font color="#FF0000">调用者C(直接调用M的不同建造方法)--建造者M--实现Sn</font></div>
+        <div><span style="text-indent: 2em;" class="cye-lm-tag"><br></span></div>
+        <div>当C与实现类解耦的时候<span style="text-indent: 2em;" class="cye-lm-tag">,</span><span style="text-indent: 2em;" class="cye-lm-tag">&nbsp;<wbr>用到工厂抽象工厂和建造者</span><span style="text-indent: 2em;" class="cye-lm-tag">.</span><span style="text-indent: 2em;" class="cye-lm-tag">&nbsp;<wbr>如果实现类只有一种,
+        显然不需要抽象工厂和建造者.&nbsp;<wbr></span></div>
+        <div><span style="text-indent: 2em;" class="cye-lm-tag"><br></span></div>
+        <div>如果实现类S的结构不复杂就用工厂; 如果实现类的结构是分层结构, 用抽象工厂; 如果实现类的结构是某些特定组合,
+        用建造者.</div>
+        <div><br></div>
+        <div>-- 全局单态</div>
+        <div><br></div>
+        <div>单例, 全局生成一个静态单例实例</div>
+        <div>原型, 克隆相同的静态原型实例</div>
+        <div><br></div>
+        <div><span style="text-indent: 2em;" class="cye-lm-tag">-- 理解</span></div>
+        <div><span style="text-indent: 2em;" class="cye-lm-tag"><br></span></div>
+        <div>解耦本身有抽象和引入中间类两种方式, 建造者使用了引入中间类的方式, 工厂两种都使用了. 引入中间类能直接隔离两端;
+        引入抽象可以解耦方法但不能解耦实体, 因为总是要new一个实现的, 不能完全隔离(而且new的时候尽可能直接转成抽象,
+        否则解耦目标就达不到了). 所以没有单纯利用抽象的方式实现完全解耦的模式.</div>
+        <div><br></div>
+        <div><br></div>
+        <div>
+        <div><font style="font-size: 20px;"><b>结构型模式</b></font></div>
+        <div>-- 结构型模式关注实体之间或方法之间的关系</div>
+        <div>
+        <ul>
+        <li>桥接模式</li>
+        <li>代理模式</li>
+        <li>适配器模式</li>
+        <li>装饰器模式</li>
+        <li>外观模式</li>
+        <li>过滤器模式</li>
+        <li>组合模式</li>
+        <li>享元模式</li>
+        </ul>
+        </div>
+        <div><br></div>
+        <div>
+        <ul>
+        <li><b style="text-indent: 2em;"><font style="font-size: 18px;">F的结构</font></b></li>
+        </ul>
+        </div>
+        <div><br></div>
+        <div>
+        <div>
+        <div><b style="font-size: 16px;">桥接模式&nbsp;<wbr>Bridge</b></div>
+        <div><br></div>
+        <div>
+        对比在建造者模式中C决定建造的方法,&nbsp;<wbr>但是与S的实例和方法同时解耦;&nbsp;<wbr>在<span style="text-indent: 2em;" class="cye-lm-tag">桥接模式中C没有与S的实例解耦</span>,&nbsp;<wbr><span style="text-indent: 2em;" class="cye-lm-tag">但是与S的方法解耦</span><span style="text-indent: 2em;" class="cye-lm-tag">.</span></div>
+        <div><span style="text-indent: 2em;" class="cye-lm-tag"><br></span></div>
+        <div><span style="text-indent: 2em;" class="cye-lm-tag">从另一个角度讲也可以认为是把桥M用作实现的父类,
+        但依然需要使用抽象AS做实现方法的多态</span></div>
+        </div>
+        <div><br></div>
+        <div>其结构是<font color="#ED1C24">调用者C(new S())--桥M--抽象AS<span style="text-indent: 2em;" class="cye-lm-tag">--实现Sn(共享方法签名F)</span></font></div>
+        <div><br></div>
+        <div><br></div>
+        <div>
+        <div><b><font style="font-size: 16px;">代理模式 Proxy</font></b></div>
+        <div><b><font style="font-size: 16px;"><br></font></b></div>
+        <div>与桥接模式类似, 代理模式可以作为C和S的中间类. 之所以叫代理, 是当C无法直接调用S的情况下,
+        代理类M能介入承担调用的责任.</div>
+        </div>
+        <div><br></div>
+        <div><br></div>
+        <div><b style="font-size: 16px;">适配器模式&nbsp;<wbr>Adapter</b></div>
+        <div><br></div>
+        <div>对比工厂和建造者, 两者是将实现类整体做解耦; 适配器仅<span style="text-indent: 2em;" class="cye-lm-tag">将对实现类的具体方法做解耦,
+        并可以对相同或不同的方法签名集成</span><span style="text-indent: 2em;" class="cye-lm-tag">.
+        适配器M必须在不同的分支中调用有且仅有一个S的方法.</span></div>
+        <div><span style="text-indent: 2em;" class="cye-lm-tag"><br></span></div>
+        <div><span style="text-indent: 2em;" class="cye-lm-tag">&nbsp;<wbr>如果M使用一个通用方法并通过形参决定每个实现</span></div>
+        <div><br></div>
+        <div>其结构是<font color="#ED1C24">调用者C--适配器M</font><span style="text-indent: 2em; color: rgb(237, 28, 36);" class="cye-lm-tag">(通用方法对每个子类的不同签名的Fn做工厂</span><span style="text-indent: 2em; color: rgb(237, 28, 36);" class="cye-lm-tag">)</span><span style="color: rgb(237, 28, 36); text-indent: 2em;" class="cye-lm-tag">--抽象AS</span><span style="color: rgb(237, 28, 36); text-indent: 2em;" class="cye-lm-tag">--实现Sn(每个实现都有不同的方法Fn)</span></div>
+        <div><br></div>
+        <div>注意,&nbsp;<wbr><font color="#ED1C24">适配器仅在调用者和实现类都已经上线并且难以更改的时候适用, 否则应尽可能采用其他设计模式</font></div>
+        </div>
+        <div><font color="#ED1C24"><br></font></div>
+        <div><font color="#ED1C24"><br></font></div>
+        <div><b style="text-indent: 2em; font-size: 16px;">装饰器</b><b style="text-indent: 2em; font-size: 16px;">模式&nbsp;<wbr></b><span style="text-indent: 2em; font-size: 16px;" class="cye-lm-tag"><b>Decorator</b></span></div>
+        <div><br></div>
+        <div>装饰器模式分离了默认方法和特定的方法.</div>
+        <div><br></div>
+        <div>其结构是<font color="#FF0000">调用者C--调用实体E(默认函数F,
+        挂载了AS)--扩展实现的抽象AS--扩展的实现Sn(方法Fn)</font></div>
+        <div><br></div>
+        <div><br></div>
+        <div>
+        <div><font style="font-size: 16px;"><b>外观模式&nbsp;<wbr></b></font><span style="text-indent: 2em; font-size: 16px;" class="cye-lm-tag"><b>Facade</b></span></div>
+        <div><br></div>
+        <div>外观模式实际上是工厂模式的变体, 外观类M不再定义唯一工厂方法, 而是像建造者一样为每个实现定义一个外观方法.
+        外观模式实际上是将解耦的实现方法再度耦合.</div>
+        <div><br></div>
+        <div>其结构是<font color="#FF0000">调用者C--外观类M(为每个实现方法定义一个外观方法Fn*)--实现的抽象AS--实现类Sn(各有一个实现方法F)</font></div>
+        </div>
+        <div><br></div>
+        <div>
+        <div>
+        <ul>
+        <li><b style="text-indent: 2em;"><font style="font-size: 18px;">E的结构</font></b></li>
+        </ul>
+        </div>
+        <div>
+        <div><b style="font-size: 16px;"><br></b></div>
+        <div><b style="font-size: 16px;">过滤器模式&nbsp;<wbr>Filter
+        (</b><span style="font-size: 16px;" class="cye-lm-tag"><b>标准模式
+        Criteria</b></span><b style="font-size: 16px;">)</b></div>
+        <div><br></div>
+        <div>过滤器模式实现了实体的筛查, 相当于where. 需要对过滤器使用工厂, 让调用者与过滤器的具体方法解耦.</div>
+        <div><br></div>
+        <div>其结构是<span style="color: rgb(237, 28, 36); text-indent: 2em;" class="cye-lm-tag">调用者C--过滤器的抽象AM--过滤器Mｍ--实体En</span></div>
+        </div>
+        <div><br></div>
+        <div><br></div>
+        <div><b style="text-indent: 2em; font-size: 16px;">组合模式&nbsp;<wbr></b><span style="text-indent: 2em; font-size: 16px;" class="cye-lm-tag"><b>Composite&nbsp;<wbr></b></span></div>
+        <div><br></div>
+        <div>组合模式实现实体的树形结构. 其关键在于在实体中定义记录上下级关系的变量及其修改方法.</div>
+        <div><br></div>
+        <div>其结构是<font color="#FF0000">调用者C--实体En(实体关系列表及其维护方法)</font></div>
+        </div>
+        <div><br></div>
+        <div><br></div>
+        <div>
+        <div><font style="font-size: 16px;"><b>享元模式&nbsp;<wbr></b></font><span style="text-indent: 2em; font-size: 16px;" class="cye-lm-tag"><b>Flyweight</b></span></div>
+        <div><br></div>
+        <div>享元模式是自动检查是否已存在对象, 如果存在直接复用, 如果不存在则新建对象.</div>
+        <div><br></div>
+        <div>其特点是有一个享元方法来判断对象是否已经存在, 并根据结果来决定复用还是新建对象实例.</div>
+        </div>
+        <div><br></div>
+        <div>
+        <div><br></div>
+        </div>
+        <div>
+        <div><b style="font-size: 18px;">小结</b></div>
+        <div>
+        <div><span style="text-indent: 2em;" class="cye-lm-tag"><br></span></div>
+        <div><span style="text-indent: 2em;" class="cye-lm-tag">-- Fn的结构</span></div>
+        <div><span style="text-indent: 2em;" class="cye-lm-tag"><br></span></div>
+        <div>桥接, 用桥接类M解耦C和实现方法F</div>
+        <div>外观, 为不同实现类的多态方法提供了不同的方法签名</div>
+        <div><span style="text-indent: 2em;" class="cye-lm-tag">适配器,
+        用适配器提供的适配方法归纳整理无法变更的实现方法F</span></div>
+        <div><span style="text-indent: 2em;" class="cye-lm-tag">代理,
+        用代理类提供的代理方法访问C本身无法完成调用的实现方法F</span></div>
+        <div>装饰器, 装饰器类解耦了默认方法和扩展方法</div>
+        <div><br></div>
+        <div><span style="text-indent: 2em;" class="cye-lm-tag">当调用者C和实现方法F可以解耦的时候,
+        用桥接模式和外观模式.&nbsp;<wbr></span></div>
+        <div>
+        <ol>
+        <li>如果调用者C不需要了解关于实现方法F的任何情况可以用外观模式;&nbsp;<wbr></li>
+        <li>如果调用者C需要指定具体实现方法F可以用桥接模式.&nbsp;<wbr></li>
+        </ol>
+        </div>
+        <div><span style="text-indent: 2em;" class="cye-lm-tag">当存在可以扩展的实现方法的时候用装饰器.&nbsp;<wbr></span></div>
+        <div><span style="text-indent: 2em;" class="cye-lm-tag">当方法签名和返回值限制了调用的时候用适配器.&nbsp;<wbr></span></div>
+        <div><span style="text-indent: 2em;" class="cye-lm-tag">当调用者C需要第三方协助才能调用方法的时候用代理.</span></div>
+        </div>
+        </div>
+        <div><br></div>
+        <div>
+        <div>-- En的结构</div>
+        </div>
+        <div><br></div>
+        <div>过滤器, 定义挑选实体的条件</div>
+        <div>组合, 定义同质实体的树形结构</div>
+        <div>享元, 为了节约资源, 如果实体E的实例已经存在就直接调用这个实例, 否则新建E的实例</div>
+        <div><span style="text-indent: 2em;" class="cye-lm-tag"><font style="font-size: 14px;"><br></font></span></div>
+        <div><span style="text-indent: 2em;" class="cye-lm-tag"><font style="font-size: 14px;">当需要定义实体En之间的关系的时候用组合;&nbsp;<wbr></font></span></div>
+        <div><span style="text-indent: 2em;" class="cye-lm-tag"><font style="font-size: 14px;">当需要依据条件挑选实体的时候用过滤器;&nbsp;<wbr></font></span></div>
+        <div><span style="text-indent: 2em;" class="cye-lm-tag"><font style="font-size: 14px;">当需要共享实体时用享元.</font></span></div>
+        <div><span style="text-indent: 2em;" class="cye-lm-tag"><font style="font-size: 14px;"><br></font></span></div>
+        <div><span style="text-indent: 2em;" class="cye-lm-tag"><font style="font-size: 14px;"><br></font></span></div>
+        <div><b style="font-size: 20px; text-indent: 2em;">行为型模式</b></div>
+        <div>-- 行为型模式关注对象之间的通信</div>
+        <div>
+        <div>
+        <ul>
+        <li>责任链模式</li>
+        <li>命令模式</li>
+        <li>解释器模式</li>
+        <li>迭代器模式</li>
+        <li>中介者模式</li>
+        <li>备忘录模式</li>
+        <li>观察者模式</li>
+        <li>状态模式</li>
+        <li>空对象模式</li>
+        <li>策略模式</li>
+        <li>模板模式</li>
+        <li>访问者模式</li>
+        </ul>
+        </div>
+        </div>
+        <div><br></div>
+        <div>
+        <ul>
+        <li><span style="font-size: 18px;" class="cye-lm-tag"><b>通信方式</b></span></li>
+        </ul>
+        <br></div>
+        <div><font style="font-size: 16px;"><b>责任链模式&nbsp;<wbr></b></font><span style="text-indent: 2em; font-size: 16px;" class="cye-lm-tag"><b>Chain
+        of Responsibility</b></span></div>
+        <div><br></div>
+        <div>责任链模式关注请求在责任链的责任类中的有序传递,
+        传递和执行方法应写在责任类的抽象AM中.&nbsp;<wbr><span style="text-indent: 2em;" class="cye-lm-tag">责任链模式要求所有责任类必须有固定且唯一的顺序.</span></div>
+        <div><br></div>
+        <div><br></div>
+        <div><font style="font-size: 16px;"><b>命令模式&nbsp;<wbr></b></font><span style="text-indent: 2em; font-size: 16px;" class="cye-lm-tag"><b>Command</b></span></div>
+        <div><br></div>
+        <div>命令类M提供统一的命令方法来调用实现类S的命令方法. 实际上是一个对多种实现类的桥接.</div>
+        <div><br></div>
+        <div><br></div>
+        <div><font style="font-size: 16px;"><b>解释器模式</b></font></div>
+        <div><br></div>
+        <div>
+        <div>解释器类M指定了每种调用的解释方法, 实际上构成了解释的建造者.</div>
+        </div>
+        <div><br></div>
+        <div><br></div>
+        <div><font style="font-size: 16px;"><b>中介者模式</b></font></div>
+        <div><br></div>
+        <div>中介者类M介入所有实体之间的通信, 将原本的网状通信改变为星型通信.</div>
+        <div><br></div>
+        <div><br></div>
+        <div>
+        <div><b style="font-size: 16px;">观察者模式</b></div>
+        <div><br></div>
+        <div>观察者接收变化者的变化广播.</div>
+        </div>
+        <div><br></div>
+        <div><br></div>
+        <div>
+        <div><font style="font-size: 16px;"><b>访问者模式</b></font></div>
+        <div><br></div>
+        <div>访问者类M对目标实现S施加变化, S同时也需要提供接收M施加变化的接待方法.</div>
+        </div>
+        <div><br></div>
+        <div><br></div>
+        <div>
+        <div><b style="font-size: 16px; text-indent: 2em;">迭代器模式</b></div>
+        <div><br></div>
+        <div>迭代器类M指定了实体E集合的遍历.</div>
+        </div>
+        <div><br></div>
+        <div>
+        <ul>
+        <li><span style="font-size: 18px;" class="cye-lm-tag"><b>应对变化</b></span></li>
+        </ul>
+        </div>
+        <div><br></div>
+        <div>
+        <div><b style="font-size: 16px;">备忘录模式</b></div>
+        <div><br></div>
+        <div>备忘录记录当前信息, 调用者C与备忘录的管理员通信</div>
+        </div>
+        <div><br></div>
+        <div><br></div>
+        <div><font style="font-size: 16px;"><b>状态模式</b></font></div>
+        <div><br></div>
+        <div>状态类的行为基于状态的改变.</div>
+        <div><br></div>
+        <div><br></div>
+        <div><font style="font-size: 16px;"><b>空对象模式</b></font></div>
+        <div><br></div>
+        <div>用空对象代替Null. 应对变化的特殊情况.</div>
+        <div><br></div>
+        <div><br></div>
+        <div><font style="font-size: 16px;"><b>策略模式</b></font></div>
+        <div><br></div>
+        <div>策略类的行为可以在运行时更改. 也就是将策略类的实体E与策略方法F解耦. 具体方法是将实体E定义在策略类中,
+        方法F定义在AS类中, 并通过指定不同的实现S来指定不同的方法F.</div>
+        <div><br></div>
+        <div><br></div>
+        <div><font style="font-size: 16px;"><b>模板模式</b></font></div>
+        <div><br></div>
+        <div>模板类AS的定义了最基础的行为, 实现类S可以覆盖或扩展这些基本行为</div>
+        <div><br></div>
+        <div><br></div>
+        </div>
+        <div><br></div>
+        <div><br></div>
+        <div>
+        <div><b style="font-size: 18px;">小结</b></div>
+        <div>
+        <div><span style="text-indent: 2em;" class="cye-lm-tag"><br></span></div>
+        <div><span style="text-indent: 2em;" class="cye-lm-tag">-- 通信方式</span></div>
+        </div>
+        </div>
+        <div><span style="text-indent: 2em;" class="cye-lm-tag"><br></span></div>
+        <div><span style="text-indent: 2em;" class="cye-lm-tag">责任链, 信息沿单向链表传递,
+        相当于纵向单列结构.</span></div>
+        <div><span style="text-indent: 2em;" class="cye-lm-tag">命令, 信息直接由对应命令接收,
+        相当于横向单层结构.</span></div>
+        <div><span style="text-indent: 2em;" class="cye-lm-tag">解释器, 信息沿解释网络传递,
+        相当于复杂的网络结构.</span></div>
+        <div>迭代器, 遍历集合类的全部元素. 相当于作为元素的单向链表传递消息.</div>
+        <div>中介者, 在全部实体E之间的一对一通信关系中加入中介者类M, 将复杂的通信网络变为简单的星型结构.</div>
+        <div>
+        <div>观察者, 目标实例变化后主动通知观察者.</div>
+        <div>访问者, 目标实例接受访问者要求的变化.</div>
+        </div>
+        <div><br></div>
+        <div>遍历用迭代器.</div>
+        <div>
+        <div>通信的相关者很多用中介者</div>
+        <div><span style="text-indent: 2em;" class="cye-lm-tag">根据通信的发起人选择观察者/访问者.</span></div>
+        <div>
+        <ol>
+        <li><span style="text-indent: 2em;" class="cye-lm-tag">目标实例发起变化用观察者.</span></li>
+        <li><span style="text-indent: 2em;" class="cye-lm-tag">目标实例接受变化用访问者.</span></li>
+        </ol>
+        </div>
+        </div>
+        <div>执行类的组织结构可以区分责任链/命令/解释器</div>
+        <div>
+        <ol>
+        <li>选择执行类的逻辑是纵向的用责任链.</li>
+        <li>选择执行类的逻辑是横向的用命令.</li>
+        <li>其他情况(复杂结构)用解释器.</li>
+        </ol>
+        </div>
+        <div><br></div>
+        <div><font style="font-size: 14px;">-- 应对变化</font></div>
+        <div><font style="font-size: 14px;"><br></font></div>
+        <div><font style="font-size: 14px;">备忘录, 用于记录和回滚变化.</font></div>
+        <div><font style="font-size: 14px;">空对象, 用空对象代替Null,
+        避免特殊的变化结果.</font></div>
+        <div><span style="text-indent: 2em;" class="cye-lm-tag">状态, 根据状态变化改变行为.</span></div>
+        <div><font style="font-size: 14px;">策略, 根据策略变化改变行为.</font></div>
+        <div><font style="font-size: 14px;">模板, 在父类封装不变部分,
+        在子类对变化开放.</font></div>
+        <div><br></div>
+        <div><font style="font-size: 14px;">为安全起见,&nbsp;<wbr></font></div>
+        <div><font style="font-size: 14px;">存档和恢复使用备忘录.</font></div>
+        <div><font style="font-size: 14px;">避免空指针错误使用空对象.</font></div>
+        <div><span style="text-indent: 2em;" class="cye-lm-tag">依据行为改变的原因是内部还是外部,
+        选择状态还是策略.</span></div>
+        <div>
+        <ol>
+        <li><span style="text-indent: 2em;" class="cye-lm-tag">内部变化导致的行为改变用状态.</span></li>
+        <li><span style="text-indent: 2em;" class="cye-lm-tag">外部指定的行为改变用策略.</span></li>
+        </ol>
+        </div>
+        <div>对变化实现开闭原则用模板.</div>
+        <div><br></div>
+        <div><font style="font-size: 20px;"><b>#总结</b></font></div>
+        <div>每个模式都有不同的实现方法, 甚至可以写出不同的类结构和关系图, 所以设计模式的区分基本上不以类结构和关系作为区分.
+        创造型模式偏重解耦C和Sn, 以及; 结构型模式关注实体间/方法间/实体与方法间的关系; 行为型模式关注通信,
+        包括通信的结构/发起/接受/处理等.</div>
+        <div><br></div>
+        <div>由此, 三种类型的模式之间的评价角度不同, 所以一个实现可能同时应用了创建型&amp;结构型&amp;行为型的模式. 当然,
+        这并非说同一类型中的模式不能同时应用, 比如备忘录/空对象等就可以和所有模式同时应用.&nbsp;<wbr></div>
+        <div><br></div>
+        <div>具有排他性的是关注点截然对立的一小组模式.&nbsp;<wbr></div>
+        <div>
+        <ol>
+        <li>工厂&amp;抽象工厂&amp;建造者, 取决于产品的结构是单一结构, 还是分层结构, 还是复杂的组合结构;</li>
+        <li>单例&amp;原型, 同一个业务需求也没有必要同时应用单例和原型;&nbsp;<wbr></li>
+        <li>桥接&amp;外观, 分别需要调用者C了解/不了解实现方法F, 也没有同时存在的必要;</li>
+        <li>观察者&amp;访问者, 如果要同时存在必须指定同一个对象(最好是中介者)同时作为观察者和访问者;</li>
+        <li>责任链&amp;命令&amp;解释器, 三者都是关于执行类的结构关系,
+        为结构简化起见没必要两两同时存在;&nbsp;<wbr></li>
+        <li>状态&amp;策略, 引发行为变化的原因不能同时是内部原因(内部状态变化)和外部原因(外部指定策略).</li>
+        </ol>
+        </div>
+        <div>如何选择设计模式可以从前文每个小结中根据具体需求分别判断.&nbsp;<wbr></div>
+        <div><br></div>
+        <div>#全文完#</div>
+        </div>
+        </div>
+</body>
+
+</html>
